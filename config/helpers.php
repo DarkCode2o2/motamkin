@@ -81,6 +81,20 @@ function categoryNameToNumber(string $catName, $arabicName = false) {
 }
 
 
+function checkToken() {
+    global $con; 
+
+    if(!isset($_COOKIE['remember_token'])) return false;
+
+    $hashed_token = hash('sha256', $_COOKIE['remember_token']);
+
+    $stmt = $con->prepare("SELECT * FROM users WHERE remember_token = ? LIMIT 1");
+    $stmt->execute([$hashed_token]);
+    $user = $stmt->fetch();
+    return $user;
+}
+
+
 function getCount(string $table, $user_id) {
     global $con;
     $stmt = $con->prepare("SELECT COUNT(*) FROM $table WHERE user_id = ?");

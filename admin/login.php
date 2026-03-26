@@ -8,28 +8,48 @@
         exit;
     }
 
-    if($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $username = htmlspecialchars($_POST['username']);
-        $pass = htmlspecialchars($_POST['password']);
+    if(checkToken()) {
+        $user = checkToken();
 
-        $user = getData('users', 'username', $username);
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['name'] = $user['name'];
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['role'] = $user['role'];
+        header("location:  ../admin");
+        exit;
 
+    }else {
+        setcookie('remember_me', '', time() - 3600, '/');
 
-        if($user) {
-            if(password_verify($pass, $user['password'])) {
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $username = htmlspecialchars($_POST['username']);
+            $pass = htmlspecialchars($_POST['password']);
 
-                $_SESSION['username'] = $user['username'];
-                $_SESSION['name'] = $user['name'];
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['role'] = $user['role'];
-    
-                header("Location: ../admin");
-                exit();
+            $user = getData('users', 'username', $username);
+
+            if($user) {
+                if(password_verify($pass, $user['password'])) {
+
+                    $_SESSION['username'] = $user['username'];
+                    $_SESSION['name'] = $user['name'];
+                    $_SESSION['user_id'] = $user['id'];
+                    $_SESSION['role'] = $user['role'];
+                    $token = bin2hex(random_bytes(15));
+
+                    setcookie('remember_token', $token, time() + (86400 * 30), '/', '', false, true);
+
+                    $stmt = $con->prepare("UPDATE users SET remember_token = ? WHERE id = ?");
+                    $hashed_token = hash('sha256', $token);
+                    $stmt->execute([$hashed_token, $user['id']]);
+                    
+                    header("Location: ../admin");
+                    exit();
+                }else {
+                    $error = '<p class="msg text-danger fw-bold">خطأ في كلمة المرور</p>';
+                }
             }else {
-                $error = '<p class="msg text-danger fw-bold">خطأ في كلمة المرور</p>';
+                $error = '<p class="msg text-danger fw-bold">خطأ في اسم المستخدم</p>';
             }
-        }else {
-            $error = '<p class="msg text-danger fw-bold">خطأ في اسم المستخدم</p>';
         }
     }
 ?>
@@ -60,7 +80,6 @@
                 <input type="password" id="password" placeholder="*********" class="form-control" required name="password">
             </div>
             <?php echo $error ?? null?>
-
            <div class="w-100 d-flex justify-content-between align-items-end">
                  <input type="submit" value="تسجيل دخول" class="btn btn-primary">
                 <a href="/" class="text-start btn btn-secondary btn-sm text-decoration-none">الصفحة الرئيسية <i class="fa-solid fa-house"></i></a>
