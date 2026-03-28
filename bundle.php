@@ -1,10 +1,32 @@
 <?php  include "header.php";
     $numbers = getData("numbers", 'category', 'bundle', '', true);
+
+    
+    $price_filter = $_GET['price'] ?? 'up';
+
+    if(isset($price_filter)) {
+
+       if($price_filter == 'down') {
+            $numbers = getData("numbers", 'category', 'bundle', "ORDER BY CAST(REPLACE(price, ',', '') AS DECIMAL(10,2)) ASC", true);
+        }else {  
+            $numbers = getData("numbers", 'category', 'bundle', "ORDER BY CAST(REPLACE(price, ',', '') AS DECIMAL(10,2)) DESC", true);
+        }
+
+    }else {
+        $numbers = getData("numbers", 'category', 'bundle', "ORDER BY CAST(REPLACE(price, ',', '') AS DECIMAL(10,2)) DESC", true);
+    }
 ?>
 
 <section class="container-lg mt-5 number-page-content text-right bundle">
     <?php if(!empty($numbers)) {?>
-        <h2 class="title">قائمة أرقام الطقم</h2>
+        <div class="d-flex justify-content-between align-items-center">
+            <h2 class="title">قائمة أرقام الطقم</h2>
+            <div class="filter-price">
+                <h4>السعر:</h4>
+                <a href="?price=up" class="bundle <?php echo $price_filter != 'down' ? 'active' : ''?>">الأعلى</a>
+                <a href="?price=down" class="bundle <?php echo $price_filter == 'down' ? 'active' : ''?>">الأقل</a>
+            </div>
+        </div>
         <div class="boxes-card">
             <?php foreach($numbers as $number):
                  $buyLink =  'أريد شراء هذا الطقم: ' . str_replace(' ','', $number['number']) . '-'.  str_replace(' ','', $number['number_two']);

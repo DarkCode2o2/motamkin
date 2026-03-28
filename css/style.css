@@ -86,6 +86,35 @@ body {
     padding: 20px;
 }
 
+body {
+    margin: 0;
+    padding-top: 30px;
+    font-family: Arial, sans-serif;
+}
+
+.announcement-bar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 40px;
+    background: #fff;
+    color: #000;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.track {
+    display: flex;
+    white-space: nowrap;
+}
+
+.item {
+    margin: 0 40px;
+    font-size: 16px;
+}
+
 /* الهيدر والشعار */
 header {
     padding-top: 20px;
@@ -367,6 +396,64 @@ section {
     }
 }
 
+@media (max-width: 577px) {
+    .cat-title {
+        flex-direction: column;
+        align-items: start !important;
+    }
+    .filter-price {
+        margin-top: 10px;
+    }
+}
+.filter-price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.filter-price a {
+  text-decoration: none;
+  padding: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: #333;
+  border: 2px solid #333;
+  margin: 0;
+  transition: .3s;
+  font-weight: bold;
+  font-size: 15px;
+
+}
+
+.filter-price a:hover, .filter-price a.active {
+    color: var(--bg-color);
+    box-shadow: 1px 5px 5px #ddd;
+}
+
+.filter-price a.economic:hover, .filter-price a.economic.active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+.filter-price a.special:hover, .filter-price a.special.active {
+    background-color: var(--special-number);
+    border-color: var(--special-number);
+}
+.filter-price a.bundle:hover, .filter-price a.bundle.active {
+    background-color: var(--bundle-number);
+    border-color: var(--bundle-number);
+}
+.filter-price a.elite:hover, .filter-price a.elite.active {
+    background-color: var(--elite-number);
+    border-color: var(--elite-number);
+}
+.filter-price a.vip:hover, .filter-price a.vip.active {
+    background-color: var(--vip-number);
+    border-color: var(--vip-number);
+}
+
+.filter-price h4 {
+    font-family: "Tajawal", sans-serif;
+}
+
 .nav-grid {
     display: grid;
     grid-template-columns: repeat(2,1fr);
@@ -605,6 +692,12 @@ section {
 
 .number-page-content {
     padding: 100px 0;
+}
+
+@media (max-width: 677px) {
+    .number-page-content {
+        padding: 100px 10px;
+    }
 }
 
 .number-page-content.economic .title {

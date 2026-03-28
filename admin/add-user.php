@@ -7,12 +7,11 @@
     $name = htmlspecialchars($_POST['name']);
     $username = htmlspecialchars($_POST['username']);
     $password = password_hash(htmlspecialchars($_POST['password']), PASSWORD_DEFAULT);
-    $role = htmlspecialchars($_POST['role']);
 
     if(!isExists($username)) {
         $stmt = $con->prepare("INSERT INTO users (name, username, password, role) VALUES (?, ?, ?, ?)");
         try {
-            $stmt->execute([$name, $username, $password, $role]);
+            $stmt->execute([$name, $username, $password, 1]);
                 header("Refresh: 2");
                 $msg = "تم إضافة مستخدم جديد بنجاح!";
             } catch(PDOException $e) {
@@ -42,14 +41,6 @@
     <label for="password" class="w-100 text-right fs-5">كلمة المرور</label>
     <div class="input-group mb-3 mt-1">
       <input type="password" id="password" class="form-control" name="password" required>
-    </div>
-
-    <label class="w-100 text-right fs-5">أختر تصنيف المستخدم</label>
-    <div class="form-floating input-group mb-3 mt-1">
-        <select class="form-select p-0 ps-2" name="role" id="categorySelect" aria-label="Floating label select example">
-          <option value="0">مسئوول</option>
-          <option value="1" selected>مستخدم</option>
-        </select>
     </div>
 
     <?php if(isset($msg)):?>

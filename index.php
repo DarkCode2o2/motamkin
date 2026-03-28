@@ -27,6 +27,11 @@
   <meta name="twitter:image" content="https://motamkin.madebyomar.dev/images/icon.png">
 </head>
 <body>
+    <div class="announcement-bar">
+    <div class="track" id="track">
+        <div class="item">يوجد تقسيط على اربع دفعات 💸</div>
+    </div>
+</div>
     <div class="icons" target="_blank">
         <a href="https://wa.link/jm23mv">
           <i class="fa-brands fa-whatsapp whatsapp"></i>
@@ -226,5 +231,42 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
+    <script>
+        const track = document.getElementById("track");
+
+        function fillContent() {
+            const itemWidth = track.children[0].offsetWidth + 80;
+            const screenWidth = window.innerWidth;
+
+            let needed = Math.ceil((screenWidth * 2) / itemWidth);
+
+            for (let i = 0; i < needed; i++) {
+                const clone = track.children[0].cloneNode(true);
+                track.appendChild(clone);
+            }
+        }
+
+        fillContent();
+
+        let position = 0;
+        const speed = 0.5;
+
+        function animate() {
+            position -= speed;
+
+            const firstItem = track.children[0];
+            const itemWidth = firstItem.offsetWidth + 80;
+
+            if (Math.abs(position) >= itemWidth) {
+                track.appendChild(firstItem);
+                position += itemWidth;
+            }
+
+            track.style.transform = `translateX(${position}px)`;
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
 </body>
 </html>

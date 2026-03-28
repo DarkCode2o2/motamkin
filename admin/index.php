@@ -6,7 +6,7 @@
   $numbers = getData('numbers', 'user_id', $_SESSION['user_id'], 'ORDER BY id DESC LIMIT 5', true);
   $numberCount = getCount('numbers', $_SESSION['user_id']);
   ob_start();
-  $pageTitle = "القائمة الرئيسية";
+  $pageTitle = "حياك الله، " . $_SESSION['name'];
 ?>
   <section class="container mb-5">
     <div class="boxes row text-white gap-4 text-center">

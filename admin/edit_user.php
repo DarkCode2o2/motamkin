@@ -11,12 +11,11 @@
         $name = htmlspecialchars($_POST['name']);
         $username = htmlspecialchars($_POST['username']);
         $password = htmlspecialchars($_POST['password']);
-        $role = htmlspecialchars($_POST['role']);
 
         if(!empty($password)) {
             $stmt = $con->prepare("UPDATE users SET name = ?, username = ?, password = ?, role = ? WHERE id = ?");
             try {
-                $stmt->execute([$name, $username, password_hash($password, PASSWORD_DEFAULT), $role, $id]);
+                $stmt->execute([$name, $username, password_hash($password, PASSWORD_DEFAULT), 1, $id]);
                 header("Refresh: 2");
                 $msg = "تم التعديل بنجاح!";
             } catch(PDOException $e) {
@@ -25,7 +24,7 @@
         }else {
             $stmt = $con->prepare("UPDATE users SET name = ?, username = ?, role = ? WHERE id = ?");
             try {
-                $stmt->execute([$name, $username, $role, $id]);
+                $stmt->execute([$name, $username, 1, $id]);
                 header("Refresh: 2");
                 $msg = "تم التعديل بنجاح!";
             } catch(PDOException $e) {
@@ -51,14 +50,6 @@
         <label for="password" class="w-100 text-right fs-5">كلمة المرور</label>
         <div class="input-group mb-3 mt-1">
         <input type="password" id="password" class="form-control" name="password" placeholder="إذا كنت لا تريد تغير كلمة المرور اتركه فارغا">
-        </div>
-
-        <label class="w-100 text-right fs-5">أختر تصنيف المستخدم</label>
-        <div class="form-floating input-group mb-3 mt-1">
-            <select class="form-select p-0 ps-2" name="role" id="categorySelect" aria-label="Floating label select example">
-                <option value="0" <?php echo $userData['role'] == 0 ? 'selected' : '' ?>>مسئوول</option>
-                <option value="1" <?php echo $userData['role'] == 1 ? 'selected' : '' ?>>مستخدم</option>
-            </select>
         </div>
 
         <?php if(isset($msg)):?>
