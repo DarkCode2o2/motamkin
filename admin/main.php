@@ -30,7 +30,7 @@
         </li>
       </ul>
     </header>
-    <div class="container-fluid">
+    <div class="container-fluid main-sec">
       <div class="row">
         <div
           class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary"
@@ -115,17 +115,23 @@
                       <i class="fa-solid fa-angle-left users-arrow"></i>
                     </button> 
                       <div class="collapse" id="dashboard-collapse"> 
-                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"> 
-                          <li>
-                            <a href="../admin/users.php" 
-                            class="nav-link d-flex align-items-center gap-2 <?php echo isCurrentUrl('users.php')?>">قائمة المستخدمين</a>
-                          </li> 
-                          <li>
-                            <a href="../admin/add-user.php" 
-                            class="nav-link d-flex align-items-center gap-2 <?php echo isCurrentUrl('add-user.php')?>">أضافة مستخدم جديد</a>
-                          </li> 
-                      </ul> 
-                    </div> 
+                          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"> 
+                            <li>
+                              <a href="../admin/users.php" 
+                              class="nav-link d-flex align-items-center gap-2 <?php echo isCurrentUrl('users.php')?>">
+                              <i class="fa-solid fa-list"></i>
+                              قائمة المستخدمين        
+                            </a>
+                            </li>
+                            <li>
+                              <a href="../admin/add-user.php" 
+                              class="nav-link d-flex align-items-center gap-2 <?php echo isCurrentUrl('add-user.php')?>">
+                                <i class="fa-solid fa-plus"></i>
+                                أضافة مستخدم جديد 
+                              </a>
+                            </li>
+                        </ul> 
+                      </div> 
                   </li>
                 <?php endif ?>
               </ul>
@@ -144,8 +150,15 @@
         </div>
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <div class="page-title d-flex gap-5 justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
               <h3><?php echo $pageTitle  ?? '' ?></h3>
+              
+              <?php if (!isset($_GET['user']) && $pageTitle == 'قائمة المستخدمين'): ?>
+                  <form method="POST" role="search" class="search-form"> 
+                    <input type="search" required minlength="10" name="number" autofocus class="form-control w-100" placeholder="بحث عن رقم...." aria-label="Search">
+                    <button type="submit">بحث</button>
+                  </form>
+              <?php endif?>
             </div>
 
             <?php echo $content ?>

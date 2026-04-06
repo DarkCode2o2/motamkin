@@ -30,7 +30,6 @@
 ?>
 
   
-
     <div class="filter">
       <h4>الأرقام المتاحة</h4>
       <ul>
@@ -55,28 +54,28 @@
         </thead>
         <tbody>
           <?php foreach($numbers as $key => $number):?>
-            <tr>
-              <td><?php echo $key+1?></td>
-              <td dir="ltr"> <?php 
-                  if($number['number_two']) {
-                    echo $number['number'] .' - '. $number['number_two'];
-                  }else {
-                    echo $number['number'];
-                  }
-                ?></td>
-              <td><?php echo $number['price']?></td>
-              <td><?php echo categoryNameToNumber($number['category'], true)?></td>
+             <tr>
+                <td><?php echo $key+1?></td>
+                <td dir="ltr"> <?php 
+                    if($number['number_two']) {
+                      echo $number['number'] .' - '. $number['number_two'];
+                    }else {
+                      echo $number['number'];
+                    }
+                  ?></td>
+                <td><?php echo $number['price']?></td>
+                <td><?php echo categoryNameToNumber($number['category'], true)?></td>
 
-              <td rowspan="2" class="d-flex justify-content-between align-items-center">
-                <a href="../admin/edit_number.php?id=<?php echo $number['id'] ?>" class="text-decoration-none">
-                    <i class="fa-solid fa-pen-to-square text-primary "></i>
-                </a>
-                <a href="../admin/delete_number.php?id=<?php echo $number['id'] ?>"
-                  onclick="return confirm('هل أنت متأكد من حذف هذا الرقم؟');">                  
-                  <i class="fa-solid fa-trash text-danger"></i>
-                </a>
-              </td>
-            </tr>
+                <td rowspan="2" class="d-flex justify-content-between align-items-center">
+                  <a href="../admin/edit_number.php?id=<?php echo $number['id'] ?>" class="text-decoration-none">
+                      <i class="fa-solid fa-pen-to-square text-primary "></i>
+                  </a>
+                  <a href="../admin/delete_number.php?id=<?php echo $number['id'] ?>"
+                    onclick="return confirm('هل أنت متأكد من حذف هذا الرقم؟');">                  
+                    <i class="fa-solid fa-trash text-danger"></i>
+                  </a>
+                </td>
+              </tr>
           <?php endforeach?>
         </tbody>
     </table>

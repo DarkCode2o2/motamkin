@@ -22,9 +22,8 @@
         <div class="d-flex justify-content-between align-items-center cat-title">
             <h2 class="title">قائمة الأرقام الاقتصادية</h2>
             <div class="filter-price">
-                <h4>السعر:</h4>
-                <a href="?price=up" class="economic <?php echo $price_filter != 'down' ? 'active' : ''?>">الأعلى</a>
-                <a href="?price=down" class="economic <?php echo $price_filter == 'down' ? 'active' : ''?>">الأقل</a>
+                <a href="?price=up" class="economic <?php echo $price_filter != 'down' ? 'active' : ''?>">أعلى سعر</a>
+                <a href="?price=down" class="economic <?php echo $price_filter == 'down' ? 'active' : ''?>">أقل سعر</a>
             </div>
         </div>
         <div class="boxes-card">

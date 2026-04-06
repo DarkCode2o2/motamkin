@@ -8,6 +8,10 @@
   --snapchat: #f3ee01;
 }
 
+html, body {
+  height: 100%;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -54,7 +58,14 @@ a {
 
 body {
   font-family: 'Tajawal', sans-serif;
+}
 
+.main-sec{
+  height: calc(100% - 48px);
+}
+
+.main-sec .row  {
+  height: 100%;
 }
 
 .container {
@@ -87,6 +98,7 @@ body {
     top: 48px;
   }
 }
+
 
 .sidebar .nav {
   row-gap: 10px;
@@ -207,7 +219,7 @@ body {
   background-color: var(--primary-color);
   border-color: var(--primary-color);
   color: var(--bg-color);
-      box-shadow: 1px 5px 5px #ddd;
+  box-shadow: 1px 5px 5px #ddd;
 
 }
 .view-numbers-table {
@@ -240,6 +252,62 @@ body {
 #second_bundle_number {
   display: none;
   width: 100%;
+}
+
+@media (max-width: 577px) {
+  .page-title {
+    flex-direction: column;
+    gap: 20px !important;
+  }
+  .search-form {
+    width: 100%;
+  }
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  flex:1;
+  gap: 10px;
+}
+
+
+@media (min-width: 980px) {
+  .search-form {
+    flex:0.5;
+  }
+}
+
+.search-form input[type='search'] {
+  border: none;
+  border-bottom: 2px solid var(--primary-color);
+  border-radius: 0%;
+  transition: 0.5s;
+}
+
+.search-form input[type='search']:focus {
+  background-color: transparent !important;
+  box-shadow: none;
+  border: 2px solid var(--primary-color);
+  border-radius: 5px;
+
+}
+
+
+.search-form button{
+  border: none;
+  outline: none;
+  background-color: var(--primary-color);
+  border-radius: 5px;
+  padding: 5px 15px;
+  color: white;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.search-form button:hover {
+  background-color:#faa855;
 }
 
 

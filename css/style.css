@@ -73,6 +73,7 @@ body {
     padding: 0;
     line-height: 1.6;
     background-color: var(--bg-color);
+    overflow-x: hidden;
 }
 
 .display-number {
@@ -86,34 +87,62 @@ body {
     padding: 20px;
 }
 
-body {
-    margin: 0;
-    padding-top: 30px;
-    font-family: Arial, sans-serif;
+/* Start Marquee */
+
+.container-tape {
+    max-width: 100%;
+    padding: 0px;
+    background-color: var(--primary-color);
+    color: #fff;
 }
 
-.announcement-bar {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 40px;
-    background: #fff;
-    color: #000;
+.container-tape {
+    --s: 300px;
+    --d: 15s;
+    --n: 5;
+    display: flex;
+    flex-wrap: wrap;
     overflow: hidden;
-    display: flex;
-    align-items: center;
+}
+
+
+.container-tape p {
+    width: var(--s);
+    offset: shape(
+        from calc(100% + var(--s)/2) 50%, 
+        hline by calc(-1 * sibling-count() * max(100%/var(--n), var(--s) + 10px))
+    ); 
+
+    offset-rotate: 0deg;
+
+    animation: x var(--d) linear infinite calc(-1*sibling-index()*var(--d)/sibling-count());
+
+    font-size: 15px;
     font-weight: bold;
+    direction: rtl;
+    padding: 0;
+    margin: 0;
 }
 
-.track {
-    display: flex;
-    white-space: nowrap;
+@media (max-width: 677px) {
+    .container-tape p:not(p.left) {
+        display: none;
+    }
+
+    .container-tape {
+        --s: 300px;
+        --d: 10s;
+        --n: 3;
+    }
 }
 
-.item {
-    margin: 0 40px;
-    font-size: 16px;
+
+@keyframes x { 
+  to {offset-distance: 100%}
 }
+
+/* End Marquee */
+
 
 /* الهيدر والشعار */
 header {
@@ -396,7 +425,7 @@ section {
     }
 }
 
-@media (max-width: 577px) {
+@media (max-width: 640px) {
     .cat-title {
         flex-direction: column;
         align-items: start !important;
@@ -411,17 +440,18 @@ section {
     gap: 10px;
 }
 .filter-price a {
-  text-decoration: none;
-  padding: 5px;
-  border-radius: 5px;
-  display: inline-block;
-  color: #333;
-  border: 2px solid #333;
-  margin: 0;
-  transition: .3s;
-  font-weight: bold;
-  font-size: 15px;
-
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    color: #333;
+    border: 2px solid #333;
+    margin: 0;
+    transition: .3s;
+    font-weight: bold;
+    font-size: 18px;
+    min-width: 80px;
+    text-align: center;
 }
 
 .filter-price a:hover, .filter-price a.active {

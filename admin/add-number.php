@@ -1,5 +1,6 @@
 <?php 
   include_once '../connect.php';
+  include_once "../config/helpers.php";
   session_start();
   if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -8,24 +9,29 @@
       $number_two = isset($_POST['number_two']) && $_POST['number_two'] != '' ? htmlspecialchars($_POST['number_two']) : null;
       $price = htmlspecialchars($_POST['price']);
 
-      if($number_two) {
-        $stmt = $con->prepare("INSERT INTO numbers (number, number_two, price, category, user_id) VALUES (?, ?, ?, ?, ?)");
-        try {
-            $stmt->execute([$number, $number_two, $price, $category, $_SESSION['user_id']]);
-            header("Refresh: 2");
-            $msg = "تم إضافة رقم جديد بنجاح!";
-        } catch(PDOException $e) {
-            echo $sql . "<br>" . $e->getMessage();
-        }
-      }else {
-        $stmt = $con->prepare("INSERT INTO numbers (number, price, category, user_id) VALUES (?, ?, ?, ?)");
-        try {
-            $stmt->execute([$number, $price, $category, $_SESSION['user_id']]);
-              header("Refresh: 2");
-              $msg = "تم إضافة رقم جديد بنجاح!";
+      if(!isExists('numbers', 'number', $number)) {
+          if($number_two) {
+            $stmt = $con->prepare("INSERT INTO numbers (number, number_two, price, category, user_id) VALUES (?, ?, ?, ?, ?)");
+            try {
+                $stmt->execute([$number, $number_two, $price, $category, $_SESSION['user_id']]);
+                header("Refresh: 2");
+                $msg = "تم إضافة رقم جديد بنجاح!";
             } catch(PDOException $e) {
-            echo $sql . "<br>" . $e->getMessage();
-        }
+                echo $sql . "<br>" . $e->getMessage();
+            }
+          }else {
+            $stmt = $con->prepare("INSERT INTO numbers (number, price, category, user_id) VALUES (?, ?, ?, ?)");
+            try {
+                $stmt->execute([$number, $price, $category, $_SESSION['user_id']]);
+                  header("Refresh: 2");
+                  $msg = "تم إضافة رقم جديد بنجاح!";
+                } catch(PDOException $e) {
+                echo $sql . "<br>" . $e->getMessage();
+            }
+          }
+      }else {
+        $msgError = "عذرا الرقم مستخدم بالفعل!";
+        header("Refresh: 2");
       }
   }
   $pageTitle = "إضافة رقم جديد";
@@ -49,7 +55,9 @@
     <div class="input-group mb-3 mt-1">
         <input type="text" minlength="10" inputmode="text" id="number" placeholder="050-555-5555" class="form-control" name="number" autocomplete="off" required>
     </div>
-
+    <?php if(isset($msgError)):?>
+      <p class="mt-2 alert alert-danger"><?php echo $msgError ?></p>
+    <?php endif?>
     <div id="second_bundle_number">
         <label for="number" class="w-100 text-right fs-5">الرقم الثاني</label>
         <div class="input-group mb-3 mt-1">

@@ -12,7 +12,7 @@
     <div class="boxes row text-white gap-4 text-center">
       <div class="box col bg-info bg-gradient rounded pt-4 shadow-md">
         <h2 class="fs-1"><?php echo $numberCount?></h2>
-        <p>عدد الأرقام المتاحة</p>
+        <p class="fw-bold">عدد الأرقام المتاحة</p>
       </div>
     </div>
   </section>

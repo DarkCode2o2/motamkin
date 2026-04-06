@@ -41,19 +41,18 @@ function user_numbers($column = null, $value = null, $user_id = null, $filter = 
 }
 
 
-function isCurrentUrl(string $pagename) {
+function isCurrentUrl(string $pagename, $returnBool = false) {
 
     $url = explode('/', trim($_SERVER['REQUEST_URI']));
+    
+    $name = explode('.', $url[1]);
 
-    foreach($url as $url) {
-        if($url == '' || $url == '/') {
-            continue;
-        }
+    $current_url = $name[0] . '.php';
 
-        $current_url = $url;
+    if($returnBool) {
+        return isset($current_url) && $current_url == $pagename ? true : false;
     }
-
-
+    
     return isset($current_url) && $current_url == $pagename ? 'active' : '';
 }
 
@@ -105,9 +104,9 @@ function getCount(string $table, $user_id) {
 }
 
 
-function isExists(string $value) {
+function isExists($table = 'users', $column = 'username', $value ) {
     global $con;
-    $stmt = $con->prepare("SELECT id FROM users where username = ? LIMIT 1");
+    $stmt = $con->prepare("SELECT id FROM $table where $column = ? LIMIT 1");
     $stmt->execute([$value]);
 
     return $stmt->fetch();

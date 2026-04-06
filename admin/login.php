@@ -36,7 +36,7 @@
                     $_SESSION['role'] = $user['role'];
                     $token = bin2hex(random_bytes(15));
 
-                    setcookie('remember_token', $token, time() + (86400 * 30), '/', '', false, true);
+                    setcookie('remember_token', $token, time() + (86400 * 30000), '/', '', false, true);
 
                     $stmt = $con->prepare("UPDATE users SET remember_token = ? WHERE id = ?");
                     $hashed_token = hash('sha256', $token);
