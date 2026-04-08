@@ -1,48 +1,94 @@
 <?php 
     include_once "config/helpers.php";
+    include_once "config/seo-helpers.php";
 
     $numbers = getData('numbers', '', '', 'ORDER BY id DESC');
 
+    // Get SEO data
+    $seo = get_seo_data('index');
 ?>
 
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" style="scroll-behavior: smooth;">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المتمكن للأرقام المميزة</title>
-    <link rel="icon" type="image/png" href="images/icon.png">
-    <?php include_once "config/links.php" ?>
+    <title><?php echo htmlspecialchars($seo['title']); ?></title>
+    <meta name="description" content="<?php echo htmlspecialchars($seo['description']); ?>">
+    <meta name="keywords" content="<?php echo htmlspecialchars(generate_meta_keywords('index')); ?>">
+    <link rel="canonical" href="<?php echo SITE_URL; ?>">
+    
     <!-- Open Graph -->
-  <meta property="og:title" content="المتمكن للأرقام المميزة" />
-  <meta property="og:description" content="متجر متخصص في بيع الأرقام المميزة نضمن لك نقل ملكية سريع وآمن، وأرقام تليق بمقامك وتبيّض الوجه." />
-  <meta property="og:image" content="https://motamkin.madebyomar.dev/images/icon.png" />
-  <meta property="og:url" content="https://motamkin.madebyomar.dev" />
-  <meta property="og:type" content="website" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="المتمكن للأرقام المميزة">
-  <meta name="twitter:description" content="متجر متخصص في بيع الأرقام المميزة نضمن لك نقل ملكية سريع وآمن، وأرقام تليق بمقامك وتبيّض الوجه.">
-  <meta name="twitter:image" content="https://motamkin.madebyomar.dev/images/icon.png">
+    <meta property="og:title" content="<?php echo htmlspecialchars($seo['og_title']); ?>">
+    <meta property="og:description" content="<?php echo htmlspecialchars($seo['og_description']); ?>">
+    <meta property="og:image" content="<?php echo SITE_URL; ?>/images/icon.png">
+    <meta property="og:url" content="<?php echo SITE_URL; ?>">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="<?php echo SITE_NAME; ?>">
+    <meta property="og:locale" content="ar_SA">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?php echo htmlspecialchars($seo['title']); ?>">
+    <meta name="twitter:description" content="<?php echo htmlspecialchars($seo['description']); ?>">
+    <meta name="twitter:image" content="<?php echo SITE_URL; ?>/images/icon.png">
+    
+    <!-- Additional SEO Meta -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <meta name="author" content="<?php echo SITE_NAME; ?>">
+    <meta name="language" content="Arabic">
+    
+    <!-- hreflang -->
+    <link rel="alternate" hreflang="ar" href="<?php echo SITE_URL; ?>">
+    <link rel="alternate" hreflang="x-default" href="<?php echo SITE_URL; ?>">
+    
+    <link rel="icon" type="image/png" href="images/icon.png">
+    <?php include_once "config/links.php"; ?>
+    
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    
+    <!-- Structured Data -->
+    <?php echo generate_organization_schema(); ?>
+    <?php echo generate_website_schema(); ?>
+    <?php echo generate_faq_schema(); ?>
+    <?php echo generate_localbusiness_schema(); ?>
+    <?php echo generate_review_schema('index'); ?>
+    <?php echo generate_howto_schema(); ?>
 </head>
 <body>
+    <!-- Structured Data for Homepage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": "<?php echo SITE_URL; ?>#webpage",
+        "url": "<?php echo SITE_URL; ?>",
+        "name": "<?php echo htmlspecialchars($seo['title']); ?>",
+        "description": "<?php echo htmlspecialchars($seo['description']); ?>",
+        "isPartOf": {
+            "@type": "WebSite",
+            "@id": "<?php echo SITE_URL; ?>#website"
+        }
+    }
+    </script>
+
     <div class="container-tape">
-        <p class="left">يوجد تقسيط على اربع دفعات 💸</p>
-        <p class="left">يوجد تقسيط على اربع دفعات 💸</p>
-        <p class="left">يوجد تقسيط على اربع دفعات 💸</p>
-        <p>يوجد تقسيط على اربع دفعات 💸</p>
-        <p>يوجد تقسيط على اربع دفعات 💸</p>
+        <p class="left">يوجد تقسيط على أربع دفعات 💸</p>
+        <p class="left">يوجد تقسيط على أربع دفعات 💸</p>
+        <p class="left">يوجد تقسيط على أربع دفعات 💸</p>
+        <p>يوجد تقسيط على أربع دفعات 💸</p>
+        <p>يوجد تقسيط على أربع دفعات 💸</p>
     </div>
+    
     <div class="icons" target="_blank">
-        <a href="https://wa.link/jm23mv">
-          <i class="fa-brands fa-whatsapp whatsapp"></i>
+        <a href="https://wa.link/jm23mv" aria-label="تواصل معنا عبر واتساب لشراء أرقام مميزة">
+          <i class="fa-brands fa-whatsapp whatsapp" aria-hidden="true"></i>
         </a>
-        <a href="https://www.snapchat.com/add/almotamkin">
-           <svg class="snapchat" viewBox="0 0 72 72" width="35" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                    <!-- Generator: Sketch 49.2 (51160) - http://www.bohemiancoding.com/sketch -->
+        <a href="https://www.snapchat.com/add/almotamkin" aria-label="تابعنا على سناب شات">
+           <svg class="snapchat" viewBox="0 0 72 72" width="35" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-label="أيقونة سناب شات">
                     <title>Snapchat</title>
-                    <desc>Created with Sketch.</desc>
+                    <desc>رابط صفحتنا على سناب شات</desc>
                     <defs></defs>
                     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                         <g id="Social-Icons---Circle" transform="translate(-40.000000, -155.000000)">
@@ -54,101 +100,110 @@
                     </g>
                 </svg>
         </a>
-        <a href="https://chat.whatsapp.com/KfspL8lpPLcACmy4Cz0ibD">
-          <i class="fas fa-gavel gavel"></i>
+        <a href="https://chat.whatsapp.com/KfspL8lpPLcACmy4Cz0ibD" aria-label="انضم لمزاد المتكن للأرقام المميزة">
+          <i class="fas fa-gavel gavel" aria-hidden="true"></i>
         </a>
     </div>
 
+    <main>
     <div class="container text-center pb-0" id="hero-page">
         <header>
-            <img src="images/icon.png" alt="Logo" class="logo"> <h1>وجهتك الصحيحة لشراء رقمك المميز</h1>
+            <img src="images/icon.png" alt="شعار المتكن للأرقام المميزة - متجر متخصص في بيع أرقام الجوالات المميزة في السعودية" class="logo" width="120" height="120" loading="eager">
+            <h1>وجهتك الصحيحة لشراء رقمك المميز</h1>
             <p class="subtitle">نخدمكم في جميع مناطق المملكة</p>
-            <img src="images/hero.png" alt="Avatar" class="avatar">
+            <img src="images/hero.png" alt="صورة توضيحية - أفضل أرقام الجوالات المميزة في السعودية - أرقام VIP واقتصادية ونخبة" class="avatar" width="300" height="300" loading="eager">
          </header>
-    <section class="premium-block">
-        <h2 class="block-title sec_title">تصفح قائمة الأرقام المتوفرة <i class="fa-solid fa-down-long"></i></h2>
+    </div>
+    
+    <section class="premium-block container">
+        <h2 class="block-title sec_title">تصفح قائمة الأرقام المتوفرة</h2>
         
-        <div class="nav-grid">
-            <a href="economic.php" class="nav-item economic">
-                <div class="icon-box economic"><i class="fas fa-coins"></i></div>
+        <nav class="nav-grid" aria-label="أقسام الأرقام">
+            <a href="economic.php" class="nav-item economic" title="أرقام اقتصادية بأسعار مناسبة من 0 إلى 499 ريال">
+                <div class="icon-box economic"><i class="fas fa-coins" aria-hidden="true"></i></div>
                 <div class="content">
-                    <span class="label">الأرقام الاقتصاديـة</span>
+                    <span class="label">الأرقام الاقتصادية</span>
                     <span class="range">من <span class="display-number">0</span> إلى <span class="display-number">499</span> ريال</span>
                 </div>
-                <div class="arrow"><i class="fas fa-chevron-left"></i></div>
+                <div class="arrow"><i class="fas fa-chevron-left" aria-hidden="true"></i></div>
             </a>
-            <a href="special.php" class="nav-item special">
-                <div class="icon-box special"><i class="fas fa-star"></i></div>
+            <a href="special.php" class="nav-item special" title="أرقام مميزة للبيع من 500 إلى 1499 ريال">
+                <div class="icon-box special"><i class="fas fa-star" aria-hidden="true"></i></div>
                 <div class="content">
-                    <span class="label">الأرقام المميـزة</span>
+                    <span class="label">الأرقام المميزة</span>
                     <span class="range">من <span class="display-number">500</span> إلى <span class="display-number">1499</span> ريال</span>
                 </div>
-                <div class="arrow"><i class="fas fa-chevron-left"></i></div>
+                <div class="arrow"><i class="fas fa-chevron-left" aria-hidden="true"></i></div>
             </a>
 
-            <a href="elite.php" class="nav-item elite">
-                <div class="icon-box elite"><i class="fa-regular fa-gem"></i></div>
+            <a href="elite.php" class="nav-item elite" title="أرقام نخبة راقية من 1500 إلى 4999 ريال">
+                <div class="icon-box elite"><i class="fa-regular fa-gem" aria-hidden="true"></i></div>
                 <div class="content">
-                    <span class="label">أرقام النخبـة</span>
-                    <span class="range">من <span class="dispaly-number">1500</span> إلى <span class="display-number">4999</span> ريال</span>
+                    <span class="label">أرقام النخبة</span>
+                    <span class="range">من <span class="display-number">1500</span> إلى <span class="display-number">4999</span> ريال</span>
                 </div>
-                <div class="arrow"><i class="fas fa-chevron-left"></i></div>
+                <div class="arrow"><i class="fas fa-chevron-left" aria-hidden="true"></i></div>
             </a>
 
-            <a href="vip.php" class="nav-item vip">
-                <div class="icon-box vip"><i class="fas fa-crown"></i></div>
+            <a href="vip.php" class="nav-item vip" title="أرقام VIP فاخرة من 5000 ريال فما فوق">
+                <div class="icon-box vip"><i class="fas fa-crown" aria-hidden="true"></i></div>
                 <div class="content">
-                    <span class="label">أرقام الـVIP</span>
+                    <span class="label">أرقام VIP</span>
                     <span class="range">من <span class="display-number">5000</span> ريال فما فوق</span>
                 </div>
-                <div class="arrow"><i class="fas fa-chevron-left"></i></div>
+                <div class="arrow"><i class="fas fa-chevron-left" aria-hidden="true"></i></div>
             </a>
 
-            <a href="bundle.php" class="nav-item bundle">
-                <div class="icon-box bundle"><i class="fas fa-clone"></i></div>
+            <a href="bundle.php" class="nav-item bundle" title="أرقام طقم مزدوجة متكاملة">
+                <div class="icon-box bundle"><i class="fas fa-clone" aria-hidden="true"></i></div>
                 <div class="content">
                     <span class="label">أرقام الطقم</span>
                 </div>
-                <div class="arrow"><i class="fas fa-chevron-left"></i></div>
+                <div class="arrow"><i class="fas fa-chevron-left" aria-hidden="true"></i></div>
             </a>
-        </div>
+        </nav>
     </section>
 
-    </div>
         <section class="avatar-sec py-4">
-            <h2 class="sec_title">صدقني راح تعجبك 👇🏻</h2>
-            <p class="fs-4 fw-700">أرقامنا <span class="comma">،</span>
-                خدماتنا 
-                <span class="comma">،</span>
-                أسعارنا</p>
-            <img src="images/about.png" alt="Avatar 2" class="avatar">
+            <h2 class="sec_title">صدقني راح تعجبك</h2>
+            <p class="fs-4 fw-700">أرقامنا المميزة، خدماتنا، أسعارنا</p>
+            <img src="images/about.png" alt="صورة توضيحية للمتجر - نعرض مجموعة من أفضل أرقام الجوالات المميزة في السعودية - اتصل بنا الآن" class="avatar" width="300" height="300" loading="lazy">
         </section>
+    
     <div class="container text-center">
         <section class="white-section">
-            <h2 class="sec_title">كيف تثق بنا؟</h2>
-            <ul class="feature-list">
-                <li class="fw-bold"><i class="fas fa-check"></i> نحن مؤسسة تجارية رسمية بسجل تجاري معتمد</li>
-                <li class="fw-bold"><i class="fas fa-check"></i> موثقة لدى منصة "اعمال" التابعة لوزارة التجارة</li>
-                <li class="fw-bold"><i class="fas fa-check"></i> تقييمات عملائنا تتجاوز 500 تقييم في حراج</li>
-                <li class="fw-bold"><i class="fas fa-check"></i> تحويل بنكي على حساب المؤسسة الرسمي</li>
+            <h2 class="sec_title">ليه تختار المتمكن؟</h2>
+            <ul class="feature-list" itemscope itemtype="https://schema.org/ItemList">
+                <li class="fw-bold" itemprop="itemListElement"><i class="fas fa-check" aria-hidden="true"></i> نحن مؤسسة تجارية رسمية بسجل تجاري معتمد</li>
+                <li class="fw-bold" itemprop="itemListElement"><i class="fas fa-check" aria-hidden="true"></i>  تقييمات عملائنا تتجاوز 500 تقييم في حراج</li>
+                <li class="fw-bold" itemprop="itemListElement"><i class="fas fa-check" aria-hidden="true"></i> عبر تطبيق My STC أو الفروع مباشرة</li>
+                <li class="fw-bold" itemprop="itemListElement"><i class="fas fa-check" aria-hidden="true"></i> تحويل بنكي على حساب المؤسسة الرسمي</li>
+                <li class="fw-bold" itemprop="itemListElement"><i class="fas fa-check" aria-hidden="true"></i> متواجدون على واتساب وسناب شات</li>
+                <li class="fw-bold" itemprop="itemListElement"><i class="fas fa-check" aria-hidden="true"></i> نخدم جميع مناطق المملكة العربية السعودية</li>
             </ul>
+        
         </section>
 
-        <section>
-            <h2 class="sec_title">ماهي طريقة النقل؟</h2>
-            <p class="fw-bold fs-6">يتم رفع الطلب باستخدام تطبيق (My STC) وبإمكانك قبول نقل الملكية فوراً عبر التطبيق أو من خلال فرع شركة الاتصالات.</p>
+        <section class="buy-number">
+            <h2 class="sec_title">طريقة شراء الأرقام المميزة</h2>
+            <p class="fw-bold fs-6">يتم <strong>نقل الملكية</strong> بسهولة عبر:</p>
+            <ul class="text-right mx-auto p-0" style="max-width: 600px;">
+                <li class="mb-2"><strong>الخطوة 1:</strong> اختر الرقم المناسب من أقسامنا (<a href="economic.php">اقتصادية</a>، <a href="special.php">مميزة</a>، <a href="elite.php">نخبة</a>، <a href="vip.php">VIP</a>)</li>
+                <li class="mb-2"><strong>الخطوة 2:</strong> تواصل معنا عبر <a href="https://wa.link/jm23mv" target="_blank" rel="noopener">واتساب</a></li>
+                <li class="mb-2"><strong>الخطوة 3:</strong> أتمم الدفع عبر تحويل بنكي</li>
+                <li class="mb-2"><strong>الخطوة 4:</strong> نقوم بنقل الملكية فوراً عبر تطبيق My STC</li>
+            </ul>
         </section>
 
         <section class="contact-us white-section">
             <h2 class="sec_title">وش تنتظر؟</h2>
             <p>تواصل معنا وشوف أرقامنا المميزة</p>
             <div class="button-grid">
-                <a href="https://wa.link/jm23mv" class="btn fw-bold fs-6"><i class="fab fa-whatsapp whatsapp"></i> اطلب قائمة الأرقام واتساب</a>
-                <a href="https://www.snapchat.com/add/almotamkin" class="btn fw-bold fs-6">
-                <svg viewBox="0 0 72 72" width="30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                    <!-- Generator: Sketch 49.2 (51160) - http://www.bohemiancoding.com/sketch -->
+                <a href="https://wa.link/jm23mv" class="btn fw-bold fs-6" title="تواصل معنا عبر واتساب"><i class="fab fa-whatsapp whatsapp" aria-hidden="true"></i> اطلب قائمة الأرقام واتساب</a>
+                <a href="https://www.snapchat.com/add/almotamkin" class="btn fw-bold fs-6" title="تابعنا على سناب شات">
+                <svg viewBox="0 0 72 72" width="30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-label="أيقونة سناب شات">
                     <title>Snapchat</title>
-                    <desc>Created with Sketch.</desc>
+                    <desc>رابط صفحتنا على سناب شات</desc>
                     <defs></defs>
                     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                         <g id="Social-Icons---Circle" transform="translate(-40.000000, -155.000000)">
@@ -160,47 +215,34 @@
                     </g>
                 </svg>
                     لمتابعتنا عبر سناب شات</a>
-                <a href="https://chat.whatsapp.com/KfspL8lpPLcACmy4Cz0ibD" class="btn fw-bold fs-6"><i class="fas fa-gavel"></i> مزاد المتمكن للأرقام المميزة</a>
+                <a href="https://chat.whatsapp.com/KfspL8lpPLcACmy4Cz0ibD" class="btn fw-bold fs-6" title="انضم لمزاد المتكن"><i class="fas fa-gavel" aria-hidden="true"></i> مزاد المتكن للأرقام المميزة</a>
         </div>
         </section>
     </div>
+    </main>
 
-    <?php include 'footer.php' ?>
+    <?php include 'footer.php'; ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
     <script>
-        // 1. تحديد العناصر والحاوية
+        // Responsive tape container
         const container = document.querySelector('.container-tape');
-        // حفظ نسخة كاملة من العناصر الأصلية عند تحميل الصفحة لأول مرة
         const allOriginalItems = Array.from(container.children);
 
         function updateElements() {
             const screenWidth = window.innerWidth;
 
             if (screenWidth <= 677) {
-                // --- حالة التصغير: حذف العناصر التي لا تملك كلاس left ---
-                
-                // نقوم بتصفية العناصر (ابقاء فقط من لديه كلاس left)
                 const filteredItems = allOriginalItems.filter(item => item.classList.contains('left'));
-                
-                // تفريغ الحاوية الحالية وإضافة العناصر المفلترة فقط
                 container.innerHTML = ''; 
                 filteredItems.forEach(item => container.appendChild(item));
-                
             } else {
-                // --- حالة التكبير (678px فما فوق): إرجاع كل شيء ---
-                
-                // تفريغ الحاوية وإعادة النسخة الأصلية كاملة
                 container.innerHTML = '';
                 allOriginalItems.forEach(item => container.appendChild(item));
-                
             }
         }
 
-        // تشغيل الدالة عند تحميل الصفحة
         updateElements();
-
-        // تشغيل الدالة عند تغيير حجم الشاشة
         window.addEventListener('resize', updateElements);
     </script>
 </body>

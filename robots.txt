@@ -1,0 +1,89 @@
+# Robots.txt for Motamkin Premium Numbers Store
+# https://motamkin.madebyomar.dev
+# Last Updated: <?php echo date('Y-m-d'); ?>
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://motamkin.madebyomar.dev/sitemap.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Host directive
+Host: https://motamkin.madebyomar.dev
+
+# Disallow admin area completely
+Disallow: /admin/
+Disallow: /admin/*
+
+# Block access to configuration and database files
+Disallow: /config/*.php$
+Disallow: /connect.php
+
+# Block temporary or backup files
+Disallow: /*.log$
+Disallow: /*.bak$
+Disallow: /*.tmp$
+
+# Allow important resources for rendering
+Allow: /css/
+Allow: /images/
+Allow: /webfonts/
+Allow: /js/
+
+# Special instructions for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 2
+
+User-agent: Googlebot-Image
+Allow: /images/
+Disallow: /admin/
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+# Yandex
+User-agent: Yandex
+Allow: /
+Disallow: /admin/
+Crawl-delay: 2
+
+# Block bad bots that consume bandwidth
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: dotbot
+Disallow: /
+
+User-agent: Megalodon
+Disallow: /
+
+User-agent: NetEstate
+Disallow: /
+
+User-agent: SinoPiderBot
+Disallow: /
+
+User-agent: Exabot
+Disallow: /
+
+User-agent: Barkrowler
+Disallow: /
+
+# Allow all major search engines to crawl everything else
+User-agent: *
+Allow: /

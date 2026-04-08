@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  
+  <!-- Homepage -->
+  <url>
+    <loc>https://motamkin.madebyomar.dev/</loc>
+    <lastmod><?php echo date('Y-m-d'); ?></lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://motamkin.madebyomar.dev/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://motamkin.madebyomar.dev/"/>
+    <image:image>
+      <image:loc>https://motamkin.madebyomar.dev/images/icon.png</image:loc>
+      <image:title>المتمكن للأرقام المميزة - متجر أرقام جوالات مميزة في السعودية</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Economic Numbers Page -->
+  <url>
+    <loc>https://motamkin.madebyomar.dev/economic.php</loc>
+    <lastmod><?php echo date('Y-m-d'); ?></lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://motamkin.madebyomar.dev/economic.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://motamkin.madebyomar.dev/economic.php"/>
+  </url>
+  
+  <!-- Special Numbers Page -->
+  <url>
+    <loc>https://motamkin.madebyomar.dev/special.php</loc>
+    <lastmod><?php echo date('Y-m-d'); ?></lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://motamkin.madebyomar.dev/special.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://motamkin.madebyomar.dev/special.php"/>
+  </url>
+  
+  <!-- Elite Numbers Page -->
+  <url>
+    <loc>https://motamkin.madebyomar.dev/elite.php</loc>
+    <lastmod><?php echo date('Y-m-d'); ?></lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://motamkin.madebyomar.dev/elite.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://motamkin.madebyomar.dev/elite.php"/>
+  </url>
+  
+  <!-- VIP Numbers Page -->
+  <url>
+    <loc>https://motamkin.madebyomar.dev/vip.php</loc>
+    <lastmod><?php echo date('Y-m-d'); ?></lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://motamkin.madebyomar.dev/vip.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://motamkin.madebyomar.dev/vip.php"/>
+  </url>
+  
+  <!-- Bundle Numbers Page -->
+  <url>
+    <loc>https://motamkin.madebyomar.dev/bundle.php</loc>
+    <lastmod><?php echo date('Y-m-d'); ?></lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://motamkin.madebyomar.dev/bundle.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://motamkin.madebyomar.dev/bundle.php"/>
+  </url>
+  
+  <!-- Note: Price filter URLs are blocked via meta robots (noindex, follow) to prevent duplicate content -->
+
+</urlset>
