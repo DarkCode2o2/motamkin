@@ -26,38 +26,76 @@
     if($numberData){
     $catNumber = categoryNameToNumber($numberData['category'])
 ?>      
-    <form action="" method="post" class="add-form mt-4 text-start bg-light-subtle p-4 rounded">
-         <label class="w-100 text-right fs-5">أختر تصنيف الرقم</label>
-        <div class="form-floating input-group mb-3 mt-1">
-            <select class="form-select p-0 ps-2" name="category" id="categorySelect" aria-label="Floating label select example">
-                <option value="1" <?php echo $catNumber == 1 ? 'selected' : '' ?>>الاقتصادية 0-499</option>
-                <option value="2" <?php echo $catNumber == 2 ? 'selected' : '' ?>>المميزة 500-1499</option>
-                <option value="3" <?php echo $catNumber == 3 ? 'selected' : '' ?>>النخبة 1500-4999</option>
-                <option value="4" <?php echo $catNumber == 4 ? 'selected' : '' ?>>الفي آي بي 5000 - وما فوق</option>
-                <option value="5" <?php echo $catNumber == 5 ? 'selected' : '' ?>>الطقم</option>
-            </select>
-        </div>
-        <label for="number" class="w-100 text-right fs-5">الرقم</label>
-        <div class="input-group mb-3 mt-1">
-            <input type="text" minlength="10" id="number" placeholder="050-555-5555" value="<?php echo $numberData['number'] ?>" class="form-control" name="number" required>
-        </div>
+<!-- Premium Edit Form Card -->
+<div class="form-card">
+  <div class="form-card-header">
+    <div class="form-card-icon">
+      <i class="fa-solid fa-pen-to-square"></i>
+    </div>
+    <h2 class="form-card-title">تعديل الرقم المميز</h2>
+    <p class="form-card-subtitle">قم بتحديث بيانات الرقم في النموذج التالي</p>
+  </div>
+  
+  <form action="" method="post" class="add-form">
+    
+    <!-- Category Selection -->
+    <div class="form-group">
+      <label for="categorySelect" class="form-label">
+        <i class="fa-solid fa-layer-group"></i>
+        تصنيف الرقم
+      </label>
+      <select class="form-select" name="category" id="categorySelect" required>
+        <option value="1" <?php echo $catNumber == 1 ? 'selected' : '' ?>>الاقتصادية 0-499</option>
+        <option value="2" <?php echo $catNumber == 2 ? 'selected' : '' ?>>المميزة 500-1499</option>
+        <option value="3" <?php echo $catNumber == 3 ? 'selected' : '' ?>>النخبة 1500-4999</option>
+        <option value="4" <?php echo $catNumber == 4 ? 'selected' : '' ?>>الفي آي بي 5000 - وما فوق</option>
+        <option value="5" <?php echo $catNumber == 5 ? 'selected' : '' ?>>الطقم</option>
+      </select>
+    </div>
 
-        <div id="second_bundle_number">
-            <label for="number" class="w-100 text-right fs-5">الرقم الثاني </label>
-            <div class="input-group mb-3 mt-1">
-                <input type="text" minlength="10" id="number" placeholder="050-555-5555" value="<?php echo $numberData['number_two'] ?? '' ?>" class="form-control" name="number_two">
-            </div>
-        </div>
+    <!-- Primary Number -->
+    <div class="form-group">
+      <label for="number" class="form-label">
+        <i class="fa-solid fa-phone"></i>
+        الرقم الأساسي
+      </label>
+      <input type="text" minlength="10" id="number" placeholder="0555555555" value="<?php echo $numberData['number'] ?>" class="form-control" name="number" required>
+    </div>
 
-        <label for="price" class="w-100 text-right fs-5">السعر</label>
-        <div class="input-group mb-3 mt-1">
-            <input type="tel" id="price" class="form-control" required value="<?php echo $numberData['price'] ?>" name="price">
-        </div>
-        <?php if(isset($msg)):?>
-        <p class="mt-2 alert alert-success"><?php echo $msg ?> <i class="fa-solid fa-circle-check"></i></p>
-        <?php endif?>
-        <input type="submit" value="تعديل" class="btn btn-primary">
+    <!-- Secondary Number -->
+    <div class="form-group">
+      <label for="number_two" class="form-label">
+        <i class="fa-solid fa-phone-volume"></i>
+        الرقم الثاني (للطقم فقط)
+      </label>
+      <input type="text" minlength="10" id="number_two" placeholder="0555555555" value="<?php echo $numberData['number_two'] ?? '' ?>" class="form-control" name="number_two">
+    </div>
+
+    <!-- Price -->
+    <div class="form-group">
+      <label for="price" class="form-label">
+        <i class="fa-solid fa-coins"></i>
+        السعر بالريال
+      </label>
+      <input type="tel" id="price" class="form-control" required value="<?php echo $numberData['price'] ?>" name="price" placeholder="0">
+    </div>
+
+    <!-- Success Message -->
+    <?php if(isset($msg)):?>
+      <div class="success-message">
+        <i class="fa-solid fa-circle-check"></i>
+        <?php echo $msg ?>
+      </div>
+    <?php endif?>
+
+    <!-- Hero Submit Button -->
+    <button type="submit" class="submit-btn">
+      <i class="fa-solid fa-check-circle"></i>
+      حفظ التعديلات
+    </button>
   </form>
+</div>
+
 <?php 
     }else {
         header("location: ../admin/index.php");
@@ -67,5 +105,3 @@
 
   include_once '../admin/main.php';
 ?>
-
-

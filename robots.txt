@@ -1,6 +1,6 @@
-# Robots.txt for Motamkin Premium Numbers Store
+# robots.txt for Motamkin Premium Numbers Store
 # https://motamkin.madebyomar.dev
-# Last Updated: <?php echo date('Y-m-d'); ?>
+# Last Updated: 2024
 
 User-agent: *
 Allow: /
@@ -13,6 +13,13 @@ Crawl-delay: 1
 
 # Host directive
 Host: https://motamkin.madebyomar.dev
+
+# Key pages for search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
 
 # Disallow admin area completely
 Disallow: /admin/

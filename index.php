@@ -202,7 +202,7 @@
                 <a href="https://wa.link/jm23mv" class="btn fw-bold fs-6" title="تواصل معنا عبر واتساب"><i class="fab fa-whatsapp whatsapp" aria-hidden="true"></i> اطلب قائمة الأرقام واتساب</a>
                 <a href="https://www.snapchat.com/add/almotamkin" class="btn fw-bold fs-6" title="تابعنا على سناب شات">
                 <svg viewBox="0 0 72 72" width="30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-label="أيقونة سناب شات">
-                    <title>Snapchat</title>
+                    <title>Snapchat</title> 
                     <desc>رابط صفحتنا على سناب شات</desc>
                     <defs></defs>
                     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
