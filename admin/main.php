@@ -27,10 +27,6 @@
     <div class="wrapper">
       <!-- Premium Floating Sidebar (Right for RTL) -->
       <aside class="sidebar" id="sidebarMenu">
-        <div class="sidebar-header">
-          <span class="sidebar-title">القائمة الرئيسية</span>
-          <button type="button" class="btn-close d-md-none" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"></button>
-        </div>
         
         <div class="sidebar-body">
           <!-- Main Navigation -->
@@ -117,16 +113,7 @@
         <!-- Page Header -->
         <div class="page-header">
           <h3 class="page-title"><?php echo $pageTitle ?? '' ?></h3>
-          
-          <?php if (!isset($_GET['user']) && $pageTitle == 'قائمة المستخدمين'): ?>
-            <!-- Glass Search Form -->
-            <form method="POST" role="search" class="search-form"> 
-              <input type="search" required minlength="10" name="number" autofocus class="form-control" placeholder="ابحث عن رقم مميز...." aria-label="Search">
-              <button type="submit">
-                <i class="fa-solid fa-magnifying-glass"></i>
-              </button>
-            </form>
-          <?php endif?>
+
         </div>
 
         <!-- Dynamic Page Content -->

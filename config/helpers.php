@@ -104,7 +104,7 @@ function getCount(string $table, $user_id) {
 }
 
 
-function isExists($table = 'users', $column = 'username', $value ) {
+function isExists($value, $table = 'users', $column = 'username') {
     global $con;
     $stmt = $con->prepare("SELECT id FROM $table where $column = ? LIMIT 1");
     $stmt->execute([$value]);

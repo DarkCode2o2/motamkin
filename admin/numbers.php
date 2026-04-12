@@ -27,6 +27,7 @@
   ob_start();
 ?>
 
+
 <!-- Minimalist Filter Section -->
 <div class="filter">
   <h4>تصفية الأرقام</h4>
@@ -70,9 +71,34 @@
   </ul>
 </div>
 
+<!-- Premium Search Bar Section -->
+<div class="search-section">
+  <div class="premium-search-container">
+    <div class="search-icon-wrapper">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+    <input 
+      type="text" 
+      id="numberSearch" 
+      class="premium-search-input" 
+      placeholder="ابحث عن رقم معين..."
+      autocomplete="off"
+      aria-label="البحث عن رقم"
+    >
+    <button type="button" class="search-clear-btn" id="clearSearch" aria-label="مسح البحث" style="display: none;">
+      <i class="fa-solid fa-times"></i>
+    </button>
+  </div>
+  <div class="search-results-count" id="resultsCount">
+    <span class="count-number"><?php echo count($numbers) ?></span>
+    <span class="count-label">رقم</span>
+  </div>
+</div>
+
+
 <!-- Minimalist Number Cards -->
 <?php if(!empty($numbers)): ?>
-<div class="row">
+<div class="row" id="numbersContainer">
   <?php foreach($numbers as $key => $number): ?>
     <?php 
       $categoryClass = '';
@@ -87,7 +113,7 @@
       }
     ?>
     
-    <div class="col-12 col-md-6 col-lg-4">
+    <div class="col-12 col-md-6 col-lg-4 number-card-wrapper" data-number="<?php echo htmlspecialchars($number['number']) ?>">
       <div class="elite-card <?php echo $categoryClass ?> fade-in">
         <!-- Number Display -->
         <div class="number-display" dir="ltr">
@@ -124,6 +150,17 @@
     </div>
   <?php endforeach ?>
 </div>
+
+<!-- No Results Message -->
+<div class="no-results-message" id="noResultsMessage" style="display: none;">
+  <div class="no-results-icon">
+    <i class="fa-solid fa-search"></i>
+  </div>
+  <h3>لا توجد نتائج</h3>
+  <p>لم يتم العثور على أرقام تطابق بحثك</p>
+  <p class="search-hint">حاول البحث برقم مختلف أو تحقق من صحة الرقم</p>
+</div>
+
 <?php else: ?>
   <!-- Empty State -->
   <div class="empty-state">

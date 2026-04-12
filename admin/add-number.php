@@ -9,7 +9,7 @@
       $number_two = isset($_POST['number_two']) && $_POST['number_two'] != '' ? htmlspecialchars($_POST['number_two']) : null;
       $price = htmlspecialchars($_POST['price']);
 
-      if(!isExists('numbers', 'number', $number)) {
+      if(!isExists($number, 'numbers', 'number')) {
           if($number_two) {
             $stmt = $con->prepare("INSERT INTO numbers (number, number_two, price, category, user_id) VALUES (?, ?, ?, ?, ?)");
             try {
@@ -83,7 +83,7 @@
       </div>
 
       <!-- Secondary Number (for Bundle) -->
-      <div class="form-group" id="second_bundle_number">
+      <div class="form-group d-none" id="second_bundle_number">
         <label for="number_two" class="form-label">
           <i class="fa-solid fa-phone-volume"></i>
           الرقم الثاني (للطقم فقط)

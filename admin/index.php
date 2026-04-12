@@ -15,7 +15,7 @@
     <div class="row align-items-center">
       <div class="col-md-8">
         <h1 class="welcome-title"><?php echo $pageTitle ?></h1>
-        <p class="welcome-subtitle">لوحة التحكم - المتكن للأرقام المميزة</p>
+        <p class="welcome-subtitle">لوحة التحكم - المتمكن للأرقام المميزة</p>
       </div>
       <div class="col-md-4 text-start text-md-end mt-3 mt-md-0">
         <a href="../admin/add-number.php" class="btn-primary">

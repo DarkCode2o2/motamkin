@@ -9,16 +9,33 @@
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
       $category = htmlspecialchars($_POST['category']);
       $number = htmlspecialchars($_POST['number']);
+      $numberTwo = htmlspecialchars($_POST['number_two']);
       $price = htmlspecialchars($_POST['price']);
 
-      $stmt = $con->prepare("UPDATE numbers SET category = ?, number = ?, price = ? WHERE id = ?");
-      try {
-          $stmt->execute([$category, $number, $price, $id]);
-          header("Refresh: 2");
-          $msg = "تم تعديل الرقم بنجاح!";
-      } catch(PDOException $e) {
-          echo $e->getMessage();
+      if($category == 5 && empty($numberTwo)) {
+        $errorMsg = 'عذرا, لا يمكنك إختيار الطقم وترك الحقل ثاني فارغا!';
+      }else {
+        if(!empty($numberTwo)) {
+          $stmt = $con->prepare("UPDATE numbers SET category = ?, number = ?, number_two = ?, price = ? WHERE id = ?");
+          try {
+              $stmt->execute([$category, $number, $numberTwo, $price, $id]);
+              header("Refresh: 2");
+              $msg = "تم تعديل الرقم بنجاح!";
+          } catch(PDOException $e) {
+              echo $e->getMessage();
+            }
+        }else {
+            $stmt = $con->prepare("UPDATE numbers SET category = ?, number = ?, number_two = ?, price = ? WHERE id = ?");
+            try {
+                $stmt->execute([$category, $number, null, $price, $id]);
+                header("Refresh: 2");
+                $msg = "تم تعديل الرقم بنجاح!";
+            } catch(PDOException $e) {
+                echo $e->getMessage();
+            }
+        }
       }
+      
   }
   $pageTitle = "تعديل الرقم";
 
@@ -63,7 +80,7 @@
     </div>
 
     <!-- Secondary Number -->
-    <div class="form-group">
+    <div class="form-group d-none" id="second_bundle_number">
       <label for="number_two" class="form-label">
         <i class="fa-solid fa-phone-volume"></i>
         الرقم الثاني (للطقم فقط)
@@ -77,7 +94,7 @@
         <i class="fa-solid fa-coins"></i>
         السعر بالريال
       </label>
-      <input type="tel" id="price" class="form-control" required value="<?php echo $numberData['price'] ?>" name="price" placeholder="0">
+      <input type="text" id="price" class="form-control" required value="<?php echo $numberData['price'] ?>" name="price" placeholder="0">
     </div>
 
     <!-- Success Message -->
@@ -85,6 +102,14 @@
       <div class="success-message">
         <i class="fa-solid fa-circle-check"></i>
         <?php echo $msg ?>
+      </div>
+    <?php endif?>
+
+    <!-- Error Message -->
+    <?php if(isset($errorMsg)):?>
+      <div class="error-message">
+        <i class="fa-solid fa-circle-xmark"></i>
+        <?php echo $errorMsg ?>
       </div>
     <?php endif?>
 

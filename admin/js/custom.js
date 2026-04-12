@@ -112,54 +112,6 @@
     }, 6000);
   });
 
-  // ==========================================
-  // NUMBER INPUT FORMATTING
-  // ==========================================
-  const numberInputs = document.querySelectorAll('input[name="number"], input[name="number_two"]');
-  
-  numberInputs.forEach(function(input) {
-    input.addEventListener('input', function(e) {
-      // Remove any non-digit characters
-      this.value = this.value.replace(/[^\d]/g, '');
-      
-      // Format as phone number
-      if (this.value.length > 10) {
-        this.value = this.value.slice(0, 10);
-      }
-    });
-    
-    // Add focus animation
-    input.addEventListener('focus', function() {
-      this.parentElement.classList.add('focused');
-    });
-    
-    input.addEventListener('blur', function() {
-      this.parentElement.classList.remove('focused');
-    });
-  });
-
-  // ==========================================
-  // PRICE INPUT VALIDATION
-  // ==========================================
-  const priceInputs = document.querySelectorAll('input[name="price"]');
-  
-  priceInputs.forEach(function(input) {
-    input.addEventListener('input', function(e) {
-      // Allow only digits and decimal point
-      this.value = this.value.replace(/[^\d.]/g, '');
-      
-      // Ensure only one decimal point
-      const parts = this.value.split('.');
-      if (parts.length > 2) {
-        this.value = parts[0] + '.' + parts.slice(1).join('');
-      }
-      
-      // Limit decimal places
-      if (parts.length === 2 && parts[1].length > 2) {
-        this.value = parts[0] + '.' + parts[1].slice(0, 2);
-      }
-    });
-  });
 
   // ==========================================
   // SCROLL ANIMATIONS WITH INTERSECTION OBSERVER
@@ -280,6 +232,40 @@
     });
   });
 
+  // ========================================================
+  // SHOW SECOND NUMBER INPUT WHEN BUNDLE CATEGORY SELECTED 
+  // ========================================================
+
+  let selectedCategory = document.getElementById('categorySelect');
+  let fSecondNumber = document.getElementById('second_bundle_number');
+  if(fSecondNumber) {
+    let secondNumberInput = fSecondNumber.querySelector('#number_two');
+
+    if(selectedCategory.value == 5) {
+      fSecondNumber.classList.remove('d-none')
+      secondNumberInput.setAttribute('required', 'required')
+
+    }else {
+      fSecondNumber.classList.add('d-none')
+      secondNumberInput.value = '';
+      secondNumberInput.removeAttribute('required')
+
+    }
+    selectedCategory.addEventListener('change', function() {
+        if(selectedCategory.value == 5) {
+          fSecondNumber.classList.remove('d-none')
+          secondNumberInput.setAttribute('required', 'required')
+
+        }else {
+          fSecondNumber.classList.add('d-none')
+          secondNumberInput.value = '';
+          secondNumberInput.removeAttribute('required')
+
+        }
+    })
+
+  }
+
   // ==========================================
   // ACTIVE NAVIGATION HIGHLIGHT
   // ==========================================
@@ -369,6 +355,288 @@
   window.hideSkeleton = function(element) {
     element.classList.remove('skeleton');
     element.style.animation = 'none';
+  };
+
+  // ==========================================
+  // REAL-TIME SEARCH & FILTER
+  // ==========================================
+  
+  // Get elements
+  const searchInput = document.getElementById('numberSearch');
+  const clearBtn = document.getElementById('clearSearch');
+  const numbersContainer = document.getElementById('numbersContainer');
+  const noResultsMessage = document.getElementById('noResultsMessage');
+  const resultsCount = document.getElementById('resultsCount');
+  
+  // Search functionality
+  if (searchInput && numbersContainer) {
+    // Debounce function for performance
+    function debounce(func, wait) {
+      let timeout;
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    }
+    
+    // Main search function
+    function filterNumbers(searchTerm) {
+      const term = searchTerm.toLowerCase().trim();
+      const numberCards = numbersContainer.querySelectorAll('.number-card-wrapper');
+      let visibleCount = 0;
+      
+      numberCards.forEach(function(card) {
+        const number = card.getAttribute('data-number') || '';
+        const numberLower = number.toLowerCase();
+        
+        // Check if number matches search term
+        if (numberLower.includes(term)) {
+          card.style.display = '';
+          card.style.animation = 'fadeIn 0.3s ease forwards';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+          card.style.animation = '';
+        }
+      });
+      
+      // Update results count
+      if (resultsCount) {
+        const countSpan = resultsCount.querySelector('.count-number');
+        if (countSpan) {
+          countSpan.textContent = visibleCount;
+        }
+      }
+      
+      // Show/hide no results message
+      if (noResultsMessage) {
+        if (visibleCount === 0 && term !== '') {
+          noResultsMessage.style.display = 'block';
+          noResultsMessage.style.animation = 'fadeIn 0.4s ease forwards';
+        } else {
+          noResultsMessage.style.display = 'none';
+        }
+      }
+      
+      // Show/hide empty state message
+      const emptyState = document.querySelector('.empty-state');
+      if (emptyState) {
+        emptyState.style.display = (visibleCount === 0 && term === '') ? 'block' : 'none';
+      }
+    }
+    
+    // Debounced search
+    const debouncedSearch = debounce(function(e) {
+      filterNumbers(e.target.value);
+    }, 150);
+    
+    // Listen to keyup events
+    searchInput.addEventListener('keyup', debouncedSearch);
+    
+    // Also listen to input event for better mobile support
+    searchInput.addEventListener('input', debouncedSearch);
+    
+    // Clear search button
+    if (clearBtn) {
+      clearBtn.addEventListener('click', function() {
+        searchInput.value = '';
+        clearBtn.style.display = 'none';
+        searchInput.focus();
+        filterNumbers('');
+        
+        // Update search icon
+        const searchIcon = document.querySelector('.search-icon-wrapper i');
+        if (searchIcon) {
+          searchIcon.classList.remove('fa-times');
+          searchIcon.classList.add('fa-magnifying-glass');
+        }
+      });
+      
+      // Show/hide clear button based on input value
+      searchInput.addEventListener('keyup', function() {
+        if (this.value.length > 0) {
+          clearBtn.style.display = 'flex';
+          // Change icon to X
+          const searchIcon = document.querySelector('.search-icon-wrapper i');
+          if (searchIcon) {
+            searchIcon.classList.remove('fa-magnifying-glass');
+            searchIcon.classList.add('fa-times');
+          }
+        } else {
+          clearBtn.style.display = 'none';
+          // Change icon back to search
+          const searchIcon = document.querySelector('.search-icon-wrapper i');
+          if (searchIcon) {
+            searchIcon.classList.remove('fa-times');
+            searchIcon.classList.add('fa-magnifying-glass');
+          }
+        }
+      });
+    }
+    
+    // Focus effect enhancement
+    searchInput.addEventListener('focus', function() {
+      this.parentElement.classList.add('focused');
+    });
+    
+    searchInput.addEventListener('blur', function() {
+      this.parentElement.classList.remove('focused');
+    });
+    
+    // Keyboard shortcut: Ctrl/Cmd + F to focus search
+    document.addEventListener('keydown', function(e) {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+        e.preventDefault();
+        searchInput.focus();
+        searchInput.select();
+      }
+      
+      // Escape key to clear search
+      if (e.key === 'Escape' && document.activeElement === searchInput) {
+        searchInput.value = '';
+        if (clearBtn) clearBtn.style.display = 'none';
+        filterNumbers('');
+        searchInput.blur();
+      }
+    });
+  }
+  
+  // Add fadeIn animation
+  const searchStyle = document.createElement('style');
+  searchStyle.textContent = `
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .number-card-wrapper {
+      animation: fadeIn 0.3s ease forwards;
+    }
+  `;
+  document.head.appendChild(searchStyle);
+
+  // ==========================================
+  // USER SEARCH FORM SUBMISSION
+  // ==========================================
+  
+  const userSearchForm = document.querySelector('.search-form-inline');
+  const userSearchInput = document.getElementById('numberSearch');
+  const userSearchBtn = document.getElementById('searchBtn');
+  const userClearBtn = document.getElementById('clearSearch');
+  
+  if (userSearchForm) {
+    userSearchForm.addEventListener('submit', function(e) {
+      // Show loading state on button
+      if (userSearchBtn) {
+        userSearchBtn.disabled = true;
+        userSearchBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>جاري البحث...</span>';
+      }
+    });
+  }
+  
+  if (userSearchInput) {
+    // Show clear button if there's initial value (from form post)
+    if (userSearchInput.value && userSearchInput.value.length > 0) {
+      if (userClearBtn) {
+        userClearBtn.style.display = 'flex';
+      }
+    }
+    
+    // Listen to keyup events
+    userSearchInput.addEventListener('keyup', function(e) {
+      const term = this.value.trim();
+      
+      // Show/hide clear button
+      if (userClearBtn) {
+        userClearBtn.style.display = term.length > 0 ? 'flex' : 'none';
+      }
+      
+      // Update icon
+      const searchIcon = this.parentElement.querySelector('.search-icon-wrapper i');
+      if (searchIcon) {
+        if (term.length > 0) {
+          searchIcon.classList.remove('fa-mobile-screen-button');
+          searchIcon.classList.add('fa-mobile-screen');
+        } else {
+          searchIcon.classList.remove('fa-mobile-screen');
+          searchIcon.classList.add('fa-mobile-screen-button');
+        }
+      }
+    });
+    
+    // Focus effects
+    userSearchInput.addEventListener('focus', function() {
+      this.parentElement.classList.add('focused');
+    });
+    
+    userSearchInput.addEventListener('blur', function() {
+      this.parentElement.classList.remove('focused');
+    });
+    
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+      // Ctrl/Cmd + F to focus user search
+      if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+        e.preventDefault();
+        userSearchInput.focus();
+        userSearchInput.select();
+      }
+      
+      // Enter key to submit search
+      if (e.key === 'Enter' && document.activeElement === userSearchInput) {
+        e.preventDefault();
+        const form = userSearchInput.closest('form');
+        if (form) {
+          form.submit();
+        }
+      }
+    });
+  }
+  
+  // Clear button handler
+  if (userClearBtn && !userClearBtn.hasAttribute('onclick')) {
+    userClearBtn.addEventListener('click', function() {
+      userSearchInput.value = '';
+      this.style.display = 'none';
+      userSearchInput.focus();
+      
+      // Reset icon
+      const searchIcon = userSearchInput.parentElement.querySelector('.search-icon-wrapper i');
+      if (searchIcon) {
+        searchIcon.classList.remove('fa-mobile-screen');
+        searchIcon.classList.add('fa-mobile-screen-button');
+      }
+      
+      // Reset search button
+      if (userSearchBtn) {
+        userSearchBtn.disabled = false;
+        userSearchBtn.innerHTML = '<i class="fa-solid fa-magnifying-glass"></i> <span>بحث</span>';
+      }
+    });
+  }
+
+  // Search from history
+  window.searchFromHistory = function(number) {
+    const input = document.getElementById('numberSearch');
+    if (input) {
+      input.value = number;
+      input.focus();
+      // Submit the form
+      const form = input.closest('form');
+      if (form) {
+        form.submit();
+      }
+    }
   };
 
   // ==========================================
