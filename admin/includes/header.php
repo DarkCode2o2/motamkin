@@ -23,7 +23,6 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard-rtl/"/>
     <link href="../admin/assets/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap">
-    <link rel="stylesheet" href="../admin/css/admin-minimal.css?time=<?php echo filemtime('css/admin-minimal.css') ?>">
+    <link rel="stylesheet" href="../admin/css/custom.css?time=<?php echo filemtime('../admin/css/custom.css') ?>">
     <link rel="stylesheet" href="../css/all.min.css">
 <body>

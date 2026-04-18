@@ -61,7 +61,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link rel="stylesheet" href="../admin/css/admin-minimal.css">
+    <link rel="stylesheet" href="../admin/css/custom.css">
     <link rel="stylesheet" href="../css/all.min.css">
     <link href="../admin/assets/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
 </head>

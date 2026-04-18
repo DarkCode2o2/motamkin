@@ -8,7 +8,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://motamkin.madebyomar.dev/</loc>
-    <lastmod><?php echo date('Y-m-d'); ?></lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://motamkin.madebyomar.dev/"/>
@@ -22,7 +22,7 @@
   <!-- Economic Numbers Page -->
   <url>
     <loc>https://motamkin.madebyomar.dev/economic.php</loc>
-    <lastmod><?php echo date('Y-m-d'); ?></lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://motamkin.madebyomar.dev/economic.php"/>
@@ -32,7 +32,7 @@
   <!-- Special Numbers Page -->
   <url>
     <loc>https://motamkin.madebyomar.dev/special.php</loc>
-    <lastmod><?php echo date('Y-m-d'); ?></lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://motamkin.madebyomar.dev/special.php"/>
@@ -42,7 +42,7 @@
   <!-- Elite Numbers Page -->
   <url>
     <loc>https://motamkin.madebyomar.dev/elite.php</loc>
-    <lastmod><?php echo date('Y-m-d'); ?></lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://motamkin.madebyomar.dev/elite.php"/>
@@ -52,7 +52,7 @@
   <!-- VIP Numbers Page -->
   <url>
     <loc>https://motamkin.madebyomar.dev/vip.php</loc>
-    <lastmod><?php echo date('Y-m-d'); ?></lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://motamkin.madebyomar.dev/vip.php"/>
@@ -62,7 +62,7 @@
   <!-- Bundle Numbers Page -->
   <url>
     <loc>https://motamkin.madebyomar.dev/bundle.php</loc>
-    <lastmod><?php echo date('Y-m-d'); ?></lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://motamkin.madebyomar.dev/bundle.php"/>

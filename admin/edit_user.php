@@ -7,7 +7,7 @@
     $userData = getData('users', 'id', $id);
 
     
-    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if($_SERVER['REQUEST_METHOD'] == 'POST' && $_SESSION['role'] == 0) {
         $name = htmlspecialchars($_POST['name']);
         $username = htmlspecialchars($_POST['username']);
         $password = htmlspecialchars($_POST['password']);

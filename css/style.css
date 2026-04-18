@@ -160,6 +160,7 @@ header {
     height: 150px;
     border-radius: 50%;
     margin: 0 auto;
+    object-fit: cover;
 }
 
 h1 {
@@ -712,6 +713,8 @@ section {
     width: 50px !important; 
     height: 50px !important;
     border-radius: 50%;
+    object-fit: cover;
+
 }
 
 @media (max-width: 767px) {
@@ -1493,6 +1496,7 @@ footer img {
     height: 80px;
     border-radius: 50%;
     margin-bottom: 10px;
+    object-fit: cover;
 }
 
 footer p {
