@@ -8,7 +8,7 @@ function getData($table, $column = null, $value = null, $filters = null, $all = 
     global $con;
 
 
-    $allowedTables = ['users', 'numbers']; // whitelist tables
+    $allowedTables = ['users', 'numbers', 'reviews']; // whitelist tables
     if (!in_array($table, $allowedTables)) {
         return false;
     }
@@ -111,3 +111,53 @@ function isExists($value, $table = 'users', $column = 'username') {
 
     return $stmt->fetch();
 } 
+
+/**
+ * Helper function to display star rating
+ * @param int $rating Rating value (1-5)
+ * @param bool $echo Whether to echo or return
+ * @return string HTML stars
+ */
+function displayStars($rating, $echo = true) {
+    $rate = intval($rating);
+    $stars = '';
+    if($rate < 5) {
+        $stars .= str_repeat('<span class="star empty">★</span>', 5 - $rate);
+        $stars .= str_repeat('<span class="star">★</span>', $rate);
+    }else {
+        $stars .= str_repeat('<span class="star">★</span>', $rate);
+
+    }
+
+    return $stars;
+}
+
+/**
+ * Get all approved reviews
+ * @return array Array of approved reviews
+ */
+function getApprovedReviews() {
+    global $con;
+    $stmt = $con->prepare("SELECT * FROM reviews WHERE status = 1 ORDER BY created_at DESC");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+/**
+ * Get review count by status
+ * @param int|null $status Status filter (0 or 1), null for all
+ * @return int Count of reviews
+ */
+function getReviewCount($status = null) {
+    global $con;
+    
+    if ($status !== null) {
+        $stmt = $con->prepare("SELECT COUNT(*) FROM reviews WHERE status = ?");
+        $stmt->execute([$status]);
+    } else {
+        $stmt = $con->prepare("SELECT COUNT(*) FROM reviews");
+        $stmt->execute();
+    }
+    
+    return $stmt->fetchColumn();
+}

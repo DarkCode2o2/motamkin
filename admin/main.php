@@ -133,6 +133,29 @@
                         </ul> 
                       </div> 
                   </li>
+
+                  <li class="users"> 
+                    <button onclick="rotateArrow(this)" class="collapsed btn" data-bs-toggle="collapse" data-bs-target="#reviews-collapse" aria-expanded="false">
+                      <div>
+                        <i class="fa-solid fa-star"></i>
+                        <p>
+                          التقييمات
+                        </p>  
+                      </div>  
+                      <i class="fa-solid fa-angle-left users-arrow"></i>
+                    </button> 
+                      <div class="collapse" id="reviews-collapse"> 
+                          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"> 
+                            <li>
+                              <a href="../admin/reviews.php" 
+                              class="nav-link d-flex align-items-center gap-2 <?php echo isCurrentUrl('reviews.php')?>">
+                              <i class="fa-solid fa-list"></i>
+                              إدارة التقييمات        
+                            </a>
+                            </li>
+                        </ul> 
+                      </div> 
+                  </li>
                 <?php endif ?>
               </ul>
 

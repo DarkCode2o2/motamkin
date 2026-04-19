@@ -3,7 +3,7 @@
     include_once "config/seo-helpers.php";
 
     $numbers = getData('numbers', '', '', 'ORDER BY id DESC');
-
+    $reviews = getData('reviews', '', '', '', true);
     // Get SEO data
     $seo = get_seo_data('index');
 ?>
@@ -44,6 +44,9 @@
     
     <link rel="icon" type="image/png" href="images/icon.png">
     <?php include_once "config/links.php"; ?>
+    
+    <!-- Reviews CSS -->
+    <link rel="stylesheet" href="css/reviews.css">
     
     <!-- Preconnect -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
@@ -169,6 +172,24 @@
             <p class="fs-4 fw-700">أرقامنا المميزة، خدماتنا، أسعارنا</p>
             <img src="images/about.png" alt="صورة توضيحية للمتجر - نعرض مجموعة من أفضل أرقام الجوالات المميزة في السعودية - اتصل بنا الآن" class="avatar" width="300" height="300" loading="lazy">
         </section>
+    <!-- Reviews Marquee Section - Premium Infinite Scroll -->
+    <?php if(sizeof($reviews) >= 3):?>
+        <section class="reviews-marquee-section" dir="ltr">
+            <h2 class="reviews-marquee-title">
+                <i class="fas fa-quote-left" style="opacity: 0.3; margin-left: 10px;"></i>
+                ماذا يقول عملاؤنا
+            </h2>
+            <div class="reviews-marquee-container" >
+                <div class="reviews-marquee-track" id="reviewsTrack" >
+                    <!-- Reviews will be loaded here by JavaScript -->
+                    <div class="loading" style="text-align: center; padding: 40px; color: var(--review-text-muted);">
+                        <span class="spinner"></span>
+                        <p style="margin-top: 10px; font-family: var(--review-font-arabic);">جاري تحميل التقييمات...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <?php endif?>
     
     <div class="container text-center">
         <section class="white-section">
@@ -221,8 +242,328 @@
     </div>
     </main>
 
+   
+
+    <!-- Review Submission Form Section - Premium -->
+    <section class="review-form-section">
+        <h2 class="review-form-title">
+            <i class="fas fa-pen" style="opacity: 0.3; margin-left: 10px;"></i>
+            شاركنا تجربتك
+        </h2>
+        <div class="review-form-container">
+            <form id="reviewForm" class="review-form" novalidate>
+                <div class="review-form-group">
+                    <label for="reviewName" class="review-form-label">
+                        <i class="fas fa-user" style="margin-left: 5px; opacity: 0.7;"></i>
+                        اسمك
+                    </label>
+                    <input 
+                        type="text" 
+                        id="reviewName" 
+                        name="name" 
+                        class="review-form-input" 
+                        placeholder="أدخل اسمك هنا..."
+                        required
+                        maxlength="30"
+                        autocomplete="name"
+                        required
+                    >
+                </div>
+                
+                <div class="review-form-group">
+                    <label class="review-form-label">
+                        <i class="fas fa-star" style="margin-left: 5px; opacity: 0.7;"></i>
+                        تقييمك
+                    </label>
+                    <div class="star-rating-selector" id="mainRatingSelector">
+                        <button type="button" class="star-btn active" data-value="1"></button>
+                        <button type="button" class="star-btn active" data-value="2"></button>
+                        <button type="button" class="star-btn active" data-value="3"></button>
+                        <button type="button" class="star-btn active" data-value="4"></button>
+                        <button type="button" class="star-btn active" data-value="5"></button>
+                    </div>
+                </div>
+                
+                <div class="review-form-group">
+                    <label for="reviewContent" class="review-form-label">
+                        <i class="fas fa-comment" style="margin-left: 5px; opacity: 0.7;"></i>
+                        تجربتك
+                    </label>
+                    <textarea 
+                        id="reviewContent" 
+                        name="content" 
+                        class="review-form-textarea" 
+                        placeholder="شاركنا تجربتك مع المتمكن..."
+                        required
+                        maxlength="100"
+                        rows="5"
+                    ></textarea>
+                    <small style="color: var(--review-text-muted); font-size: 0.85rem; margin-top: 5px; display: block;">
+                        <span id="charCount">0</span> / 100 حرف
+                    </small>
+                </div>
+                
+                <button type="submit" class="review-form-submit" id="submitBtn">
+                    <i class="fas fa-paper-plane" style="margin-left: 8px;"></i>
+                    إرسال التقييم
+                </button>
+                
+                <div class="review-form-message" id="formMessage"></div>
+            </form>
+        </div>
+    </section>
+
     <?php include 'footer.php'; ?>
+    
+    <!-- Custom Styles for Review Form - Premium White Theme -->
+    <style>
+    .review-form-section {
+        background: linear-gradient(180deg, #ffffff 0%, #f5ebe0 100%);
+        padding: 80px 20px;
+        position: relative;
+    }
+    
+    .review-form-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #d4a373, #e8c9a8, #d4a373);
+    }
+    
+    .review-form-container {
+        background: #ffffff;
+        border: 2px solid #e8c9a8;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(212, 163, 115, 0.15);
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 40px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .review-form-container::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(212, 163, 115, 0.08) 0%, transparent 50%);
+        pointer-events: none;
+    }
+    
+    .review-form-title {
+        color: #5e503f;
+        font-size: 2rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 30px;
+        font-family: 'Tajawal', sans-serif;
+    }
+    
+    .review-form-title::after {
+        content: '';
+        display: block;
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, #d4a373, #e8c9a8);
+        margin: 15px auto 0;
+        border-radius: 2px;
+    }
+    
+    .review-form-label {
+        color: #5e503f;
+        font-weight: 600;
+        margin-bottom: 10px;
+        display: block;
+        font-family: 'Tajawal', sans-serif;
+    }
+    
+    .review-form-input,
+    .review-form-textarea {
+        width: 100%;
+        padding: 15px 20px;
+        background: #fafafa;
+        border: 2px solid #e8c9a8;
+        border-radius: 12px;
+        color: #5e503f;
+        font-size: 1rem;
+        font-family: 'Tajawal', sans-serif;
+        transition: all 0.3s ease;
+    }
+    
+    .review-form-input:focus,
+    .review-form-textarea:focus {
+        outline: none;
+        border-color: #d4a373;
+        box-shadow: 0 0 0 4px rgba(212, 163, 115, 0.15);
+        background: #ffffff;
+    }
+    
+    .review-form-input::placeholder,
+    .review-form-textarea::placeholder {
+        color: #a89b8c;
+    }
+    
+    .star-rating-selector {
+        display: flex;
+        gap: 10px;
+        direction: ltr;
+        justify-content: center;
+    }
+    
+    .star-btn {
+        width: 50px;
+        height: 50px;
+        background: #ffffff;
+        border: 2px solid #e8c9a8;
+        border-radius: 12px;
+        color: #d4a373;
+        font-size: 1.8rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .star-btn::before {
+        content: '★';
+        text-shadow: none;
+        transition: all 0.3s ease;
+    }
+    
+    .star-btn:hover,
+    .star-btn.active {
+        background: rgba(212, 163, 115, 0.15);
+        border-color: #d4a373;
+        transform: scale(1.1);
+        box-shadow: 0 4px 15px rgba(212, 163, 115, 0.3);
+    }
+    
+    .star-btn:hover::before,
+    .star-btn.active::before {
+        text-shadow: 0 0 15px rgba(212, 163, 115, 0.8);
+    }
+    
+    .review-form-submit {
+        width: 100%;
+        padding: 18px 30px;
+        background: linear-gradient(135deg, #d4a373 0%, #c49a6c 50%, #d4a373 100%);
+        background-size: 200% 200%;
+        border: none;
+        border-radius: 12px;
+        color: #ffffff;
+        font-size: 1.1rem;
+        font-weight: 700;
+        font-family: 'Tajawal', sans-serif;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(212, 163, 115, 0.3);
+        margin-top: 10px;
+    }
+    
+    .review-form-submit::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s ease;
+    }
+    
+    .review-form-submit:hover {
+        background-position: 100% 100%;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(212, 163, 115, 0.4);
+    }
+    
+    .review-form-submit:hover::before {
+        left: 100%;
+    }
+    
+    .review-form-submit:active {
+        transform: translateY(-1px);
+    }
+    
+    .review-form-submit:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+    }
+    
+    .review-form-message {
+        margin-top: 20px;
+        padding: 15px 20px;
+        border-radius: 12px;
+        text-align: center;
+        font-family: 'Tajawal', sans-serif;
+        display: none;
+    }
+    
+    .review-form-message.success {
+        display: block;
+        background: rgba(34, 197, 94, 0.15);
+        border: 1px solid rgba(34, 197, 94, 0.3);
+        color: #15803d;
+    }
+    
+    .review-form-message.error {
+        display: block;
+        background: rgba(239, 68, 68, 0.15);
+        border: 1px solid rgba(239, 68, 68, 0.3);
+        color: #b91c1c;
+    }
+    
+    .review-form-group {
+        margin-bottom: 25px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .review-form-section {
+            padding: 50px 15px;
+        }
+        
+        .review-form-container {
+            padding: 30px 20px;
+        }
+        
+        .review-form-title {
+            font-size: 1.6rem;
+        }
+        
+        .star-btn {
+            width: 45px;
+            height: 45px;
+            font-size: 1.5rem;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .review-form-container {
+            padding: 25px 15px;
+            border-radius: 15px;
+        }
+        
+        .star-btn {
+            width: 40px;
+            height: 40px;
+            font-size: 1.3rem;
+        }
+    }
+    </style>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+    <!-- Reviews JavaScript -->
+    <script src="js/reviews.js"></script>
 
     <script>
         // Responsive tape container
