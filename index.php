@@ -45,9 +45,6 @@
     <link rel="icon" type="image/png" href="images/icon.png">
     <?php include_once "config/links.php"; ?>
     
-    <!-- Reviews CSS -->
-    <link rel="stylesheet" href="css/reviews.css">
-    
     <!-- Preconnect -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     

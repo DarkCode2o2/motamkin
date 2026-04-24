@@ -73,6 +73,7 @@
     );
     overflow: hidden;
     direction: ltr;
+    display: none;
 }
 
 .reviews-marquee-section::before {
