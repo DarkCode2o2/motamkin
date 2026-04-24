@@ -73,6 +73,7 @@
     );
     overflow: hidden;
     direction: ltr;
+    display: none;
 }
 
 .reviews-marquee-section::before {
@@ -262,6 +263,7 @@
         var(--review-bg-secondary) 100%
     );
     margin-bottom: 120px;
+    display: none;
 }
 
 .review-form-title {
