@@ -106,10 +106,26 @@ echo generate_review_schema('bundle');
             <?php endforeach;?>
         </div>
         
-        <div class="category-footer">
-            <h3>لم تجد الطقم المناسب؟</h3>
-            <p>تواصل معنا وسنوفر لك أفضل أرقام الطقم المتكاملة.</p>
-            <a href="https://wa.link/jm23mv" class="btn btn-lg" target="_blank" rel="noopener">تواصل معنا عبر واتساب</a>
+           <div class="auction-card" style="width: 100%;" dir="rtl">
+            <div class="auction-content">
+                <div>
+                    <h2>لا يفوتك المزاد!</h2>
+                    <span class="auction-icon">🔥</span>
+                </div>
+                <h3>أرقام مميزة.. ومزايدات يومية</h3>
+
+                <p>
+                    انضم لقروب مزاد المتمكن وكن أول المطلعين
+                    على الأرقام الجديدة
+                </p>
+
+                <a href="https://chat.whatsapp.com/KfspL8lpPLcACmy4Cz0ibD?s=cl&p=i&iam=2" target="_blank" class="auction-btn">
+                    انضم للمزاد الآن
+                    <span>
+                        <i class="fa-solid fa-arrow-left-long"></i>
+                    </span>
+                </a>
+            </div>
         </div>
         
     <?php }else {?>

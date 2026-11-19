@@ -95,55 +95,81 @@ body {
 /* Start Marquee */
 
 .container-tape {
-    max-width: 100%;
-    padding: 0px;
+    width: 100%;
+    overflow: hidden;
     background-color: var(--primary-color);
     color: #fff;
+    padding: 0;
+    direction: ltr;
 }
 
-.container-tape {
-    --s: 300px;
-    --d: 15s;
-    --n: 5;
+.tape-track {
     display: flex;
-    flex-wrap: wrap;
-    overflow: hidden;
+    width: max-content;
+    animation: tape-scroll 25s linear infinite;
+    will-change: transform;
 }
 
+.tape-group {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 30px;
+    padding-right: 30px;
+}
 
-.container-tape p {
-    width: var(--s);
-    offset: shape(
-        from calc(100% + var(--s)/2) 50%, 
-        hline by calc(-1 * sibling-count() * max(100%/var(--n), var(--s) + 10px))
-    ); 
+.tape-group p {
+    flex: 0 0 350px;
+    width: 350px;
+    margin: 0;
+    padding: 0;
 
-    offset-rotate: 0deg;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 
-    animation: x var(--d) linear infinite calc(-1*sibling-index()*var(--d)/sibling-count());
+    direction: rtl;
+    white-space: nowrap;
 
     font-size: 15px;
     font-weight: bold;
-    direction: rtl;
+}
+
+.tape-group p img {
+    display: block;
+    flex: 0 0 50px;
+    width: 50px;
+    height: 50px;
     padding: 0;
     margin: 0;
+    object-fit: contain;
+}
+
+@keyframes tape-scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
 }
 
 @media (max-width: 677px) {
-    .container-tape p:not(p.left) {
+
+    .tape-group p {
+        flex-basis: 500px;
+        width: 500px;
+    }
+
+    .tape-group p:not(.left) {
         display: none;
     }
 
-    .container-tape {
-        --s: 300px;
-        --d: 10s;
-        --n: 3;
+    .tape-track {
+        animation-duration: 22s;
     }
-}
-
-
-@keyframes x { 
-  to {offset-distance: 100%}
 }
 
 /* End Marquee */
@@ -309,7 +335,7 @@ section {
 }
 
 .buy-number ul li a {
-    color: dodgerblue;
+    color: var(--primary-color);
     text-decoration: underline;
 }
 
@@ -427,6 +453,130 @@ section {
     margin: 0;
     max-width: 800px;
     margin: 0 auto;
+}
+
+.auction-card {
+    width: min(100% - 30px, 600px);
+    margin: 30px auto;
+    padding: 30px 25px;
+    box-sizing: border-box;
+    background: #fffaf3;
+    border: 1px solid rgba(212, 163, 115, .4);
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(80, 55, 30, .08);
+    font-family: inherit;
+    text-align: center;
+}
+
+
+.auction-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.auction-content > div {
+    display: flex;
+    align-items: center;
+}
+
+.auction-icon {
+    font-size: clamp(22px, 4vw, 30px);
+    margin-bottom: 8px;
+    color: orangered;
+}
+
+.auction-card h2 {
+    color: #292929;
+    font-size: clamp(22px, 4vw, 30px);
+    margin: 0 0 12px;
+    font-weight: 800;
+}
+
+.auction-card h3 {
+    color: #D4A373;
+    font-size: clamp(17px, 3vw, 22px);
+    margin: 0 0 12px;
+    font-weight: 700;
+}
+
+.auction-card p {
+    color: #555;
+    font-size: clamp(14px, 2.5vw, 17px);
+    line-height: 1.9;
+    margin: 0 0 22px;
+    max-width: 450px;
+}
+
+.auction-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 55px;
+    box-sizing: border-box;
+    padding: 12px 20px;
+    background: #D4A373;
+    color: #fff;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 700;
+    transition: .25s ease;
+}
+
+.auction-btn:focus,
+.auction-btn:active,
+.auction-btn:focus-visible {
+    outline: none;
+}
+
+.auction-btn i {
+    animation-name: move-arrow;
+    animation-duration: 0.8s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    transform: translateX(5px);
+}
+
+
+@keyframes move-arrow {
+    0% {
+        transform: translateX(5px);
+    }
+    25% {
+        transform: translateX(0px);
+    }
+
+    50% {
+        transform: translateX(-5px);
+    }
+    100% {
+        transform: translateX(-10px);
+    }
+}
+
+.auction-btn:hover {
+    background: #bd8958;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 163, 115, .3);
+}
+
+.auction-btn span {
+    font-size: 22px;
+}
+
+@media (max-width: 480px) {
+    .auction-card {
+        padding: 24px 16px;
+        border-radius: 14px;
+    }
+
+    .auction-btn {
+        font-size: 15px;
+        min-height: 50px;
+    }
 }
 
 .block-title {

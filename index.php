@@ -74,12 +74,74 @@
     </script>
 
     <div class="container-tape">
-        <p class="left">يوجد تقسيط على أربع دفعات 💸</p>
-        <p class="left">يوجد تقسيط على أربع دفعات 💸</p>
-        <p class="left">يوجد تقسيط على أربع دفعات 💸</p>
-        <p>يوجد تقسيط على أربع دفعات 💸</p>
-        <p>يوجد تقسيط على أربع دفعات 💸</p>
+    <div class="tape-track">
+
+        <div class="tape-group">
+            <p class="left">
+                <span>أول متجر أرقام في المملكة يوفر</span>
+                <img src="images/Tabby.svg" alt="Tabby">
+                <img src="images/Tamara.svg" alt="Tamara">
+            </p>
+
+            <p class="left">
+                <span>أول متجر أرقام في المملكة يوفر</span>
+                <img src="images/Tabby.svg" alt="Tabby">
+                <img src="images/Tamara.svg" alt="Tamara">
+            </p>
+
+            <p class="left">
+                <span>أول متجر أرقام في المملكة يوفر</span>
+                <img src="images/Tabby.svg" alt="Tabby">
+                <img src="images/Tamara.svg" alt="Tamara">
+            </p>
+
+            <p>
+                <span>أول متجر أرقام في المملكة يوفر</span>
+                <img src="images/Tabby.svg" alt="Tabby">
+                <img src="images/Tamara.svg" alt="Tamara">
+            </p>
+
+            <p>
+                <span>أول متجر أرقام في المملكة يوفر</span>
+                <img src="images/Tabby.svg" alt="Tabby">
+                <img src="images/Tamara.svg" alt="Tamara">
+            </p>
+        </div>
+
+        <div class="tape-group" aria-hidden="true">
+            <p class="left">
+                <span>أول متجر أرقام في المملكة يوفر</span>
+                <img src="images/Tabby.svg" alt="">
+                <img src="images/Tamara.svg" alt="">
+            </p>
+
+            <p class="left">
+                <span>أول متجر أرقام في المملكة يوفر</span>
+                <img src="images/Tabby.svg" alt="">
+                <img src="images/Tamara.svg" alt="">
+            </p>
+
+            <p class="left">
+                <span>أول متجر أرقام في المملكة يوفر</span>
+                <img src="images/Tabby.svg" alt="">
+                <img src="images/Tamara.svg" alt="">
+            </p>
+
+            <p>
+                <span>أول متجر أرقام في المملكة يوفر</span>
+                <img src="images/Tabby.svg" alt="">
+                <img src="images/Tamara.svg" alt="">
+            </p>
+
+            <p>
+                <span>أول متجر أرقام في المملكة يوفر</span>
+                <img src="images/Tabby.svg" alt="">
+                <img src="images/Tamara.svg" alt="">
+            </p>
+        </div>
+
     </div>
+</div>
     
     <div class="icons" target="_blank">
         <a href="https://wa.link/jm23mv" aria-label="تواصل معنا عبر واتساب لشراء أرقام مميزة">
@@ -100,7 +162,7 @@
                     </g>
                 </svg>
         </a>
-        <a href="https://chat.whatsapp.com/KfspL8lpPLcACmy4Cz0ibD" aria-label="انضم لمزاد المتكن للأرقام المميزة">
+        <a href="https://chat.whatsapp.com/KfspL8lpPLcACmy4Cz0ibD" aria-label="انضم لمزاد المتمكن للأرقام المميزة">
           <i class="fas fa-gavel gavel" aria-hidden="true"></i>
         </a>
     </div>
@@ -108,7 +170,7 @@
     <main>
     <div class="container text-center pb-0" id="hero-page">
         <header>
-            <img src="images/icon.png" alt="شعار المتكن للأرقام المميزة - متجر متخصص في بيع أرقام الجوالات المميزة في السعودية" class="logo" width="120" height="120" loading="eager">
+            <img src="images/icon.png" alt="شعار المتمكن للأرقام المميزة - متجر متخصص في بيع أرقام الجوالات المميزة في السعودية" class="logo" width="120" height="120" loading="eager">
             <h1>وجهتك الصحيحة لشراء رقمك المميز</h1>
             <p class="subtitle">نخدمكم في جميع مناطق المملكة</p>
             <img src="images/hero.png" alt="صورة توضيحية - أفضل أرقام الجوالات المميزة في السعودية - أرقام VIP واقتصادية ونخبة" class="avatar" width="300" height="300" loading="eager">
@@ -164,9 +226,31 @@
         </nav>
     </section>
 
+    <div class="auction-card" dir="rtl">
+        <div class="auction-content">
+            <div>
+                <h2>لا يفوتك المزاد!</h2>
+                <span class="auction-icon">🔥</span>
+            </div>
+            <h3>أرقام مميزة.. ومزايدات يومية</h3>
+
+            <p>
+                انضم لقروب مزاد المتمكن وكن أول المطلعين
+                على الأرقام الجديدة
+            </p>
+
+            <a href="https://chat.whatsapp.com/KfspL8lpPLcACmy4Cz0ibD?s=cl&p=i&iam=2" target="_blank" class="auction-btn">
+                انضم للمزاد الآن
+                <span>
+                    <i class="fa-solid fa-arrow-left-long"></i>
+                </span>
+            </a>
+        </div>
+    </div>
+
         <section class="avatar-sec py-4">
             <h2 class="sec_title">صدقني راح تعجبك</h2>
-            <p class="fs-4 fw-700">أرقامنا المميزة، خدماتنا، أسعارنا</p>
+            <p class="fs-4 fw-700">أرقامنا، خدماتنا، أسعارنا</p>
             <img src="images/about.png" alt="صورة توضيحية للمتجر - نعرض مجموعة من أفضل أرقام الجوالات المميزة في السعودية - اتصل بنا الآن" class="avatar" width="300" height="300" loading="lazy">
         </section>
     <!-- Reviews Marquee Section - Premium Infinite Scroll -->
@@ -194,9 +278,6 @@
             <ul class="feature-list" itemscope itemtype="https://schema.org/ItemList">
                 <li class="fw-bold" itemprop="itemListElement"><i class="fas fa-check" aria-hidden="true"></i> نحن مؤسسة تجارية رسمية بسجل تجاري معتمد</li>
                 <li class="fw-bold" itemprop="itemListElement"><i class="fas fa-check" aria-hidden="true"></i>  تقييمات عملائنا تتجاوز 500 تقييم في حراج</li>
-                <li class="fw-bold" itemprop="itemListElement"><i class="fas fa-check" aria-hidden="true"></i> عبر تطبيق My STC أو الفروع مباشرة</li>
-                <li class="fw-bold" itemprop="itemListElement"><i class="fas fa-check" aria-hidden="true"></i> تحويل بنكي على حساب المؤسسة الرسمي</li>
-                <li class="fw-bold" itemprop="itemListElement"><i class="fas fa-check" aria-hidden="true"></i> متواجدون على واتساب وسناب شات</li>
                 <li class="fw-bold" itemprop="itemListElement"><i class="fas fa-check" aria-hidden="true"></i> نخدم جميع مناطق المملكة العربية السعودية</li>
             </ul>
         
@@ -207,9 +288,10 @@
             <p class="fw-bold fs-6">يتم <strong>نقل الملكية</strong> بسهولة عبر:</p>
             <ul class="text-right mx-auto p-0" style="max-width: 600px;">
                 <li class="mb-2"><strong>الخطوة 1:</strong> اختر الرقم المناسب من أقسامنا (<a href="economic.php">اقتصادية</a>، <a href="special.php">مميزة</a>، <a href="elite.php">نخبة</a>، <a href="vip.php">VIP</a>)</li>
-                <li class="mb-2"><strong>الخطوة 2:</strong> تواصل معنا عبر <a href="https://wa.link/jm23mv" target="_blank" rel="noopener">واتساب</a></li>
+                <li class="mb-2"><strong>الخطوة 2:</strong> تواصل معنا عبر واتساب</li>
                 <li class="mb-2"><strong>الخطوة 3:</strong> أتمم الدفع عبر تحويل بنكي</li>
-                <li class="mb-2"><strong>الخطوة 4:</strong> نقوم بنقل الملكية فوراً عبر تطبيق My STC</li>
+                <li class="mb-2"><strong>الخطوة 4:</strong> نقوم بنقل الملكية فوراً عبر تطبيق mystc</li>
+                <li class="mb-2"><strong>الخطوة 5:</strong> قبول الطلب عن طريق تطبيق mystc</li>
             </ul>
         </section>
 
@@ -233,7 +315,7 @@
                     </g>
                 </svg>
                     لمتابعتنا عبر سناب شات</a>
-                <a href="https://chat.whatsapp.com/KfspL8lpPLcACmy4Cz0ibD" class="btn fw-bold fs-6" title="انضم لمزاد المتكن"><i class="fas fa-gavel" aria-hidden="true"></i> مزاد المتكن للأرقام المميزة</a>
+                <a href="https://chat.whatsapp.com/KfspL8lpPLcACmy4Cz0ibD" class="btn fw-bold fs-6" title="انضم لمزاد المتمكن"><i class="fas fa-gavel" aria-hidden="true"></i> مزاد المتمكن للأرقام المميزة</a>
         </div>
         </section>
     </div>
@@ -317,26 +399,5 @@
     <!-- Reviews JavaScript -->
     <script src="js/reviews.js"></script>
 
-    <script>
-        // Responsive tape container
-        const container = document.querySelector('.container-tape');
-        const allOriginalItems = Array.from(container.children);
-
-        function updateElements() {
-            const screenWidth = window.innerWidth;
-
-            if (screenWidth <= 677) {
-                const filteredItems = allOriginalItems.filter(item => item.classList.contains('left'));
-                container.innerHTML = ''; 
-                filteredItems.forEach(item => container.appendChild(item));
-            } else {
-                container.innerHTML = '';
-                allOriginalItems.forEach(item => container.appendChild(item));
-            }
-        }
-
-        updateElements();
-        window.addEventListener('resize', updateElements);
-    </script>
 </body>
 </html>
