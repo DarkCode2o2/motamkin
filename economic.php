@@ -103,27 +103,54 @@ echo generate_review_schema('economic');
             <?php endforeach;?>
         </div>
         
-        <div class="auction-card" style="width: 100%;" dir="rtl">
-            <div class="auction-content">
-                <div>
-                    <h2>لا يفوتك المزاد!</h2>
-                    <span class="auction-icon">🔥</span>
-                </div>
-                <h3>أرقام مميزة.. ومزايدات يومية</h3>
-
-                <p>
-                    انضم لقروب مزاد المتمكن وكن أول المطلعين
-                    على الأرقام الجديدة
-                </p>
-
-                <a href="https://chat.whatsapp.com/KfspL8lpPLcACmy4Cz0ibD?s=cl&p=i&iam=2" target="_blank" class="auction-btn">
-                    انضم للمزاد الآن
-                    <span>
-                        <i class="fa-solid fa-arrow-left-long"></i>
-                    </span>
-                </a>
-            </div>
+    <section class="premium-auction sec" aria-labelledby="auction-title">
+      <div class="auction-art" aria-label="مطرقة مزاد ذهبية وأرقام مميزة" role="img">
+        <div class="art-glow"></div>
+        <div class="art-caption">
+          <span class="caption-dot"></span>
+          <span>أرقام تستحق الاقتناء</span>
         </div>
+      </div>
+
+      <div class="auction-content">
+        <div class="top-pill">
+          <span class="live-dot"></span>
+          <span>مزادات وأرقام جديدة يومياً</span>
+        </div>
+
+        <div class="headline-wrap">
+          <span class="flame" aria-hidden="true">🔥</span>
+          <h2 id="auction-title">لا يفوتك المزاد!</h2>
+        </div>
+
+        <p class="intro">
+          انضم لقروب مزاد المتمكن، وكن أول المطلعين على الأرقام الجديدة والمميزة.
+        </p>
+
+        <div class="features" aria-label="مميزات الخدمة">
+          <div class="feature">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 5v6c0 5-3.4 9-8 11-4.6-2-8-6-8-11V5l8-3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg>
+            <span>آمن وموثوق</span>
+          </div>
+          <span class="feature-separator"></span>
+          <div class="feature">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-9 12h7l-1 8 10-13h-7l0-7Z"/></svg>
+            <span>مزادات يومية</span>
+          </div>
+          <span class="feature-separator"></span>
+          <div class="feature">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 8-6-3-6 3 1-8-5-5 7-1 3-6Z"/></svg>
+            <span>أرقام حصرية</span>
+          </div>
+        </div>
+
+        <a class="cta" href="https://chat.whatsapp.com/KfspL8lpPLcACmy4Cz0ibD" target="_blank" rel="noopener">
+          <span>انضم للمزاد الآن</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m0 0 6 6m-6-6 6-6"/></svg>
+        </a>
+        <p class="microcopy">فرصتك القادمة قد تكون هنا</p>
+      </div>
+    </section>
         
     <?php }else {?>
             <div class="not-found">
