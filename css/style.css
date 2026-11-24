@@ -492,6 +492,15 @@ section {
         justify-content: center;
     }
 }
+
+@media (max-width: 380px) {
+
+    .headline-wrap h2 {
+        font-size: 30px !important
+
+    }
+}
+
 .premium-auction::before, .premium-auction::after {
   content: "";
   position: absolute;
@@ -505,7 +514,7 @@ section {
 
 .auction-art {
   position: relative;
-  min-height: 300px;
+  min-height: 200px;
   overflow: hidden;
   background-image: linear-gradient(0deg, rgba(233,180,119,.08), transparent 42%), url("../images/auction-visual.jpg");
   background-size: cover;

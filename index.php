@@ -353,7 +353,6 @@
     <!-- Review Submission Form Section - Premium -->
     <section class="review-form-section">
         <h2 class="review-form-title">
-            <i class="fas fa-pen" style="opacity: 0.3; margin-left: 10px;"></i>
             شاركنا تجربتك
         </h2>
         <div class="review-form-container">

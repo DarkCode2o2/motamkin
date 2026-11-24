@@ -97,14 +97,14 @@ function handlePost($con, $data) {
     }
     
     // Validate name length
-    if (strlen($name) < 20) {
+    if (strlen($name) > 20) {
         http_response_code(400);
         echo json_encode(['success' => false, 'message' => 'جرب اسما أقصر']);
         return;
     }
     
     // Validate content length
-    if (strlen($content) < 100) {
+    if (strlen($content) > 200) {
         http_response_code(400);
         echo json_encode(['success' => false, 'message' => 'جرب تعليقا أقصر']);
         return;

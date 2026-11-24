@@ -1,6 +1,10 @@
 <?php 
     ob_start();
     session_start();
+    if(!isset($_SESSION['username']) || $_SESSION['role'] != 0) {
+        header("location: ../admin/numbers.php");
+        exit;
+    }
     include_once '../config/helpers.php'; 
     $id = htmlspecialchars($_GET['id']);
     

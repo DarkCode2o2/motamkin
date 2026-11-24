@@ -82,7 +82,7 @@
             <?php echo $error ?? null?>
            <div class="w-100 d-flex justify-content-between align-items-end">
                  <input type="submit" value="تسجيل دخول" class="btn btn-primary">
-                <a href="/" class="text-start btn btn-secondary btn-sm text-decoration-none">الصفحة الرئيسية <i class="fa-solid fa-house"></i></a>
+                <a href="../" class="text-start btn btn-secondary btn-sm text-decoration-none">الصفحة الرئيسية <i class="fa-solid fa-house"></i></a>
            </div>
         </form>
     </div>

@@ -1,6 +1,12 @@
 <?php 
     $pageTitle = "قائمة المستخدمين";
+    session_start();
 
+    if(!isset($_SESSION['username']) || $_SESSION['role'] != 0) {
+        header("location: ../admin/numbers.php");
+        exit;
+    }
+    
     include_once '../connect.php';
     include_once '../config/helpers.php';
 
@@ -33,7 +39,9 @@
         }
     }
     
-
+    // echo "<pre>";
+    // print_r($_SESSION);
+    // echo "</pre>";
     ob_start();
 ?>
       <?php if(!isset($_GET['user']) || empty($_GET['user'])): ?>
@@ -46,6 +54,7 @@
                   <th scope="col">الرقم</th>
                   <th scope="col">السعر</th>
                   <th scope="col">التصنيف</th>
+                  <th scope="col">تحكم</th>
                 </tr>
               </thead>
               <tbody>
@@ -60,6 +69,17 @@
                       ?></td>
                     <td><?php echo $userNumber['price']?></td>
                     <td><?php echo categoryNameToNumber($userNumber['category'], true)?></td>
+                    <?php if($_SESSION['role'] == 0): ?>
+                      <td rowspan="2" class="d-flex justify-content-between align-items-center">
+                        <a href="../admin/edit_number.php?id=<?php echo $userNumber['id'] ?>" class="text-decoration-none">
+                            <i class="fa-solid fa-pen-to-square text-primary "></i>
+                        </a>
+                        <a href="../admin/delete_number.php?id=<?php echo $userNumber['id'] ?>"
+                          onclick="return confirm('هل أنت متأكد من حذف هذا المستخدم؟');">                  
+                          <i class="fa-solid fa-trash text-danger"></i>
+                        </a>
+                      </td>
+                    <?php endif?>
                   </tr>
               </tbody>
           </table>

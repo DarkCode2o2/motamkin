@@ -2,6 +2,10 @@
 
   include_once '../connect.php';
   include_once "../config/helpers.php";
+  if(!isset($_SESSION['username']) || $_SESSION['role'] != 0) {
+        header("location: ../admin/numbers.php");
+        exit;
+    }
   if($_SERVER['REQUEST_METHOD'] == 'POST' && $_SESSION['role'] == 0) {
 
     $name = htmlspecialchars($_POST['name']);
