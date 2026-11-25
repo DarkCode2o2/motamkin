@@ -3,6 +3,8 @@
   include_once "../admin/includes/header.php";
   include_once "../config/helpers.php";
 
+$lastSegment = basename(rtrim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/'));
+
 ?> 
     
     <i class="fa-solid fa-bars-staggered d-none"></i>
@@ -176,9 +178,9 @@
             <div class="page-title d-flex gap-5 justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
               <h3><?php echo $pageTitle  ?? '' ?></h3>
               
-              <?php if (!isset($_GET['user']) && $pageTitle == 'قائمة المستخدمين'): ?>
+              <?php if (!isset($_GET['user']) && $lastSegment == 'users.php' ||  $lastSegment == 'numbers.php'):?>
                   <form method="POST" role="search" class="search-form"> 
-                    <input type="search" required minlength="10" name="number" autofocus class="form-control w-100" placeholder="بحث عن رقم...." aria-label="Search">
+                    <input type="search" required name="number" autofocus class="form-control w-100" placeholder="بحث عن رقم...." aria-label="Search">
                     <button type="submit">بحث</button>
                   </form>
               <?php endif?>

@@ -30,6 +30,12 @@ function getData($table, $column = null, $value = null, $filters = null, $all = 
     return $data;
 }
 
+function printOut( $num) {
+    echo "<pre>"; 
+        print_r($num);
+    echo "</pre>";
+}
+
 function user_numbers($column = null, $value = null, $user_id = null, $filter = null) {
     global $con;
     $stmt = $con->prepare("SELECT * FROM numbers WHERE $column = ? AND user_id = ? $filter");

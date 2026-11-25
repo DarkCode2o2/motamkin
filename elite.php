@@ -79,28 +79,78 @@ echo generate_review_schema('elite');
             اكتشف أرقام النخبة الفاخرة بأسعار تنافسية من 1500 إلى 4999 ريال. أرقام فريدة ومميزة تعكس ذوقك الراقي.
         </p>
         
-        <div class="boxes-card" itemscope itemtype="https://schema.org/ItemList">
-            <?php foreach($numbers as $index => $number):
-                 $buyLink =  "أريد شراء هذا الرقم: " . str_replace(' ','', $number['number'])
-                ?>
-                <article class="box-card" itemprop="itemListElement" itemscope itemtype="https://schema.org/Product">
-                    <div class="info-side">
-                        <h2 class="phone-number display-number" dir="ltr" itemprop="name"><?php echo $number['number'] ?></h2>
-                        <meta itemprop="description" content="<?php echo htmlspecialchars(generate_product_description($number, 'elite')); ?>">
+    <div class="boxes-card" itemscope itemtype="https://schema.org/ItemList">
+
+        <?php foreach ($numbers as $index => $number):
+
+            $isSold = (string)($number['status'] ?? '0') === '1';
+
+            $buyLink = "أريد شراء هذا الرقم: " . str_replace(' ', '', $number['number']);
+
+            $safeNumber = htmlspecialchars($number['number'], ENT_QUOTES, 'UTF-8');
+
+        ?>
+
+            <article
+                class="box-card <?= $isSold ? 'is-sold' : '' ?>"
+                
+                itemprop="itemListElement"
+                itemscope
+                itemtype="https://schema.org/Product">
+
+                <div class="info-side">
+
+                    <div class="number-heading">
+
+                        <h2 class="phone-number display-number"
+                            dir="ltr"
+                            itemprop="name">
+                            <?= $safeNumber ?>
+                        </h2>
+
+                        <?php if ($isSold): ?>
+                            <span class="sold-badge">مباع</span>
+                        <?php endif; ?>
+
                     </div>
-                    <div class="action-side">
-                        <div class="price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                            <span itemprop="price" content="<?php echo (int)str_replace([',', ' '], '', $number['price']); ?>">
-                                <?php echo $number['price'] ?>
-                            </span>
-                            <meta itemprop="priceCurrency" content="SAR">
-                            <link itemprop="availability" href="https://schema.org/InStock">
+
+                    <meta itemprop="description"
+                        content="<?= htmlspecialchars(generate_product_description($number, 'economic'), ENT_QUOTES, 'UTF-8') ?>">
+
+                </div>
+
+                <div class="action-side">
+
+                    <div class="price"
+                        itemprop="offers"
+                        itemscope
+                        itemtype="https://schema.org/Offer">
+
+                        <span itemprop="price"
+                            content="<?= (int)str_replace([',', ' '], '', $number['price']) ?>">
+                            <?= htmlspecialchars($number['price'], ENT_QUOTES, 'UTF-8') ?>
+                        </span>
+
+                        <meta itemprop="priceCurrency" content="SAR">
+
+                        <link itemprop="availability"
+                            href="https://schema.org/<?= $isSold ? 'OutOfStock' : 'InStock' ?>">
+
+                    </div>
+
+                    <?php if ($isSold): ?>
+                        <div class="sold-overlay">
+                            <span class="sold-ribbon">تم البيع</span>
                         </div>
-                        <a href="https://wa.me/+966500550950?text=<?php echo urlencode($buyLink)?>" target="_blank" rel="noopener" class="whatsapp-btn" aria-label="حجز رقم <?php echo $number['number']; ?> عبر واتساب">حجز عبر الواتساب <i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
-                    </div>
-                </article> 
-            <?php endforeach;?>
-        </div>
+                    <?php endif; ?>
+
+                </div>
+
+            </article>
+
+        <?php endforeach; ?>
+
+    </div>
         
  <section class="premium-auction sec" aria-labelledby="auction-title">
       <div class="auction-art" aria-label="مطرقة مزاد ذهبية وأرقام مميزة" role="img">

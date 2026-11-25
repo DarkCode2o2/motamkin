@@ -19,6 +19,7 @@
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
           $num = str_replace(' ', '', htmlspecialchars($_POST['number']));
+          
           $stmt = $con->prepare("SELECT * FROM numbers WHERE REPLACE(number, ' ', '') = ? LIMIT 1");
           try {
             $stmt->execute([$num]);

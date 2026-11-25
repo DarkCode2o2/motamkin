@@ -219,9 +219,21 @@ body {
   background-color: var(--primary-color);
   border-color: var(--primary-color);
   color: var(--bg-color);
-  box-shadow: 1px 5px 5px #ddd;
+  box-shadow: 1px 5px 5px hsl(0, 0%, 87%);
 
 }
+
+.search-query {
+  margin-bottom: 10px;
+
+}
+
+@media (max-width:677px) {
+  .search-query h2 {
+    font-size: 20px;
+  }
+}
+
 .view-numbers-table {
   background-color: #fafafa;
   padding: 10px;
@@ -309,5 +321,20 @@ body {
 .search-form button:hover {
   background-color:#faa855;
 }
+
+/* Toggle button  */
+.switch {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background: #198754;
+    color: white;
+}
+
+.switch.sold {
+  background-color: red;
+}
+/* Toggle button  */
 
 
