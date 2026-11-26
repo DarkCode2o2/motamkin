@@ -137,14 +137,17 @@ echo generate_review_schema('economic');
                         <link itemprop="availability"
                             href="https://schema.org/<?= $isSold ? 'OutOfStock' : 'InStock' ?>">
 
+
                     </div>
 
-                    <?php if ($isSold): ?>
+                    <?php if ($isSold) {?>
                         <div class="sold-overlay">
                             <span class="sold-ribbon">تم البيع</span>
                         </div>
-                    <?php endif; ?>
+                    <?php }else {?>
+                        <a href="https://wa.me/+966500550950?text=<?php echo urlencode($buyLink)?>" target="_blank" rel="noopener" class="whatsapp-btn" aria-label="حجز طقم أرقام عبر واتساب">حجز عبر الواتساب <i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
 
+                    <?php } ?>
                 </div>
 
             </article>
